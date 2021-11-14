@@ -13,7 +13,7 @@ $("#new").click(function () {
     const username = formData[1].value;
     const password = formData[2].value;
     const total = { "platform": platform, "name": username, "password": password };
-    updateCookie(total);
+    setCookie(total);
 });
 
 $(document).ready(function () {

@@ -15,7 +15,7 @@ findById = (id) => {
     return data.find(d => d.id == id) || false
 }
 
-getRandomId = (min = 1121, max = 999999) => {
+getRandomId = (min = 112111, max = 999999) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     const num = Math.floor(Math.random() * (max - min + 1) + min);
@@ -25,21 +25,20 @@ getRandomId = (min = 1121, max = 999999) => {
 setCookie = (value, name = 'paroladepom') => {
     let id = getRandomId()
     console.log('value ', value);
-    const format = value.map(d => {
-        d.id = id
-        d.platform = d.platform
-        d.name = d.name
-        d.password = d.password
-    })
-    Cookies.set(name, value, { expires: 3500 })
+    var currentCookies = getCookie()
+    value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password }
+    currentCookies.push(value)
+    console.log('diğer data ', currentCookies);
+    Cookies.set(name, currentCookies, { expires: 3500 })
 }
 
-updateCookie = (data) => {
-    var currentCookies = getCookie()
-    currentCookies.push(data)
-    setCookie(currentCookies)
-    return true
-}
+// updateCookie = (data) => {
+//     var currentCookies = getCookie()
+//     console.log(currentCookies);
+//     currentCookies.push(data)
+//     setCookie(currentCookies)
+//     return true
+// }
 
 listAll = () => {
     const data = getCookie()
