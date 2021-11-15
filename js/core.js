@@ -19,7 +19,11 @@ getRandomId = (min = 112111, max = 999999) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     const num = Math.floor(Math.random() * (max - min + 1) + min);
-    return findById(num) || num
+    if(findById(num)) {
+        getRandomId()
+    } else {
+        return num
+    }
 }
 
 setCookie = (value, name = 'paroladepom') => {
@@ -28,7 +32,6 @@ setCookie = (value, name = 'paroladepom') => {
     var currentCookies = getCookie()
     value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password }
     currentCookies.push(value)
-    console.log('diğer data ', currentCookies);
     Cookies.set(name, currentCookies, { expires: 3500 })
 }
 
@@ -43,6 +46,7 @@ setCookie = (value, name = 'paroladepom') => {
 listAll = () => {
     const data = getCookie()
     var list = $('#list')
+    list.html('')
     if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
             list.append(`<div class="max-w-sm mx-auto inline-flex">
@@ -56,7 +60,7 @@ listAll = () => {
                                     <div
                                         class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex">
                                         ${data[i].platform}
-                                        <div class="pl-3" id="deletePass_123123"><svg
+                                        <div class="pl-3" id="delete_${data[i].id}"><svg
                                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
                                                 fill="none" viewBox="0 0 26 26" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
