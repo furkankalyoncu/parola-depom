@@ -19,7 +19,7 @@ getRandomId = (min = 112111, max = 999999) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     const num = Math.floor(Math.random() * (max - min + 1) + min);
-    if(findById(num)) {
+    if (findById(num)) {
         getRandomId()
     } else {
         return num
@@ -28,20 +28,39 @@ getRandomId = (min = 112111, max = 999999) => {
 
 setCookie = (value, name = 'paroladepom') => {
     let id = getRandomId()
-    console.log('value ', value);
     var currentCookies = getCookie()
     value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password }
     currentCookies.push(value)
     Cookies.set(name, currentCookies, { expires: 3500 })
 }
 
-// updateCookie = (data) => {
-//     var currentCookies = getCookie()
-//     console.log(currentCookies);
-//     currentCookies.push(data)
-//     setCookie(currentCookies)
-//     return true
-// }
+deleteCookie = (id, name = 'paroladepom') => {
+    let intId = parseInt(id, 10)
+    let currentCookies = getCookie()
+    let record = currentCookies.find(d => d.id === intId)
+    Swal.fire({
+        title: 'Emin misin?',
+        text: `${record.platform} kaydı emrinle silinecek. Cümle alem toplansa geri getiremez bir daha.`,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Evet',
+        cancelButtonText: 'Hayır'
+    }).then((result) => {
+        if (result.value === true) {
+            currentCookies.splice(currentCookies.findIndex(function (i) {
+                return i.id === intId;
+            }), 1);
+            Cookies.set(name, currentCookies, { expires: 3500 })
+            listAll()
+            Swal.fire(
+                'Silindi',
+                'Patron sensin.',
+                'success'
+            )
+        }
+    })
+}
 
 listAll = () => {
     const data = getCookie()
@@ -60,7 +79,7 @@ listAll = () => {
                                     <div
                                         class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex">
                                         ${data[i].platform}
-                                        <div class="pl-3" id="delete_${data[i].id}"><svg
+                                        <div class="pl-3" id="delete" name="delete_${data[i].id}"><svg
                                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
                                                 fill="none" viewBox="0 0 26 26" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
