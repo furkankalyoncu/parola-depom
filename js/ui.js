@@ -1,5 +1,5 @@
 $("#newButton").click(function () {
-    $('#newForm').toggle();
+    $('#newForm').first().fadeToggle(200, 'linear');
     $(this).text(function (i, text) {
         return text === "Kapat" ? "Yeni" : "Kapat";
     })
@@ -69,6 +69,23 @@ $(document).ready(function () {
     }, 100);
 });
 
+// yedek
+$("#getBackup").click(function () {
+    event.preventDefault();
+    Swal.fire({
+        title: 'Yedeği İndir',
+        text: `İnecek dosyada tüm bilgilerin sansürsüz ve şifresiz şekilde açıkça yazıyor. Lütfen dosyayı başkasına verme.`,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'İndir',
+        cancelButtonText: 'Kapat'
+    }).then((result) => {
+        if (result.value === true) {
+            getBackup()
+        }
+    })
+});
 handlePreferences = () => {
     const preferences = getCookie('paroladepom_preferences')
     const defaultUsername = preferences.find(data => data.name === 'defaultUsername')
@@ -87,10 +104,16 @@ handlePreferences = () => {
 
 modalClose = (modal) => {
     const modalToClose = document.querySelector('.' + modal);
-    modalToClose.style.display = 'none';
+    $(modalToClose)
+        .first()
+        .fadeToggle(100)
+        .css("display", "none")
 }
 
 openModal = (modal) => {
     const modalToOpen = document.querySelector('.' + modal);
-    modalToOpen.style.display = 'flex';
+    $(modalToOpen)
+        .first()
+        .fadeToggle(50)
+        .css("display", "flex")
 }

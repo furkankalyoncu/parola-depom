@@ -65,7 +65,7 @@
     </div>
 
     <!-- modal -->
-    <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster hidden"
+    <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn hidden"
         style="background: rgba(0,0,0,.7);">
         <div
             class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
@@ -102,6 +102,33 @@
                                     placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz.">
                             </div>
                         </div>
+                        <div>
+                            <div>
+                                <label class="text-md text-gray-800">Yedek</label>
+                            </div>
+                            <button id="getBackup"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg">
+                                İndir
+                            </button>
+                            <button id="uploadBackup"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg"
+                                onclick="event.preventDefault(), document.getElementById('uploadBackupDiv').style.display = 'block'">
+                                Yükle
+                            </button>
+                        </div>
+                        <div class="mt-5 hidden" id="uploadBackupDiv">
+                            <div>
+                                <label for="uploadBackupInput" class="text-md text-gray-800">Yedek Yükle</label>
+                            </div>
+                            <div>
+                                <input type="button" id="uploadBackupInput"
+                                    onclick="document.getElementById('realUploadBackup').click()" autocomplete="off"
+                                    name="uploadBackupInput"
+                                    class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold"
+                                    value="Dosya Seç">
+                            </div>
+                        </div>
+
                     </form>
                 </div>
                 <!--Footer-->
@@ -116,16 +143,16 @@
             </div>
         </div>
     </div>
+
+    <input type="file" onchange="uploadBackup()" class="invisible" id="realUploadBackup">
 </body>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="js/FileSaver.js"></script>
 <script src="js/core.js"></script>
 <script src="js/ui.js"></script>
 <script>
-    // const set = setCookie([{ "platform": "testxx", "username": "furkan", "password": "test123" }])
-    //updateCookie({ "platform": "facebook", "username": "furkan", "password": "test123" })
-    // console.log(findPlatform('instagram'));
     listAll()
     handlePreferences()
 </script>

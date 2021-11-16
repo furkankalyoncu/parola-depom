@@ -80,6 +80,37 @@ savePreferences = (form, name = 'paroladepom_preferences') => {
     handlePreferences()
 }
 
+now = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var hh = String(today.getHours()).padStart(2, '0');
+    var min = String(today.getMinutes()).padStart(2, '0');
+    return dd + '-' + mm + '-' + yyyy + ' ' + hh + '.' + min;
+}
+
+getBackup = () => {
+    const data = JSON.stringify(getCookie())
+    var blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+    saveAs(blob, `Parola Depom Yedek ${now()}.txt`);
+    return true
+}
+
+uploadBackup = () => {
+    const [file] = document.querySelector('input[type=file]').files;
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+        Cookies.set('paroladepom', reader.result, { expires: 3500 })
+        listAll()
+    }, false);
+
+    if (file) {
+        reader.readAsText(file)
+    }
+}
+
 listAll = () => {
     const data = getCookie()
     var list = $('#list')
