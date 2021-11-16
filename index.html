@@ -11,14 +11,19 @@
 
 <body>
     <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
-        <h1 class="place-self-center">Parola Depom</h2>
+        <h1 class="place-self-center" translate="no">Parola Depom</h2>
     </div>
     <div class="flex justify-end mx-16">
         <button id="newButton"
             class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-10 text-lg">
             Yeni
         </button>
+        <button id="preferences" onclick="openModal('main-modal')"
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-10 text-lg ml-2">
+            Tercihler
+        </button>
     </div>
+
     <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="newForm">
         <form method="POST" id="form" autocomplete="off">
             <div class="text-center space-y-2 sm:text-left">
@@ -58,6 +63,59 @@
     <div class="max-w-4xl ml-auto mr-auto pt-6" id="list">
 
     </div>
+
+    <!-- modal -->
+    <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster hidden"
+        style="background: rgba(0,0,0,.7);">
+        <div
+            class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+            <div class="modal-content py-4 text-left px-6">
+                <!--Title-->
+                <div class="flex justify-between items-center pb-3">
+                    <p class="text-2xl font-bold text-black-500">Tercihler</p>
+                    <div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
+                        <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18"
+                            height="18" viewBox="0 0 18 18">
+                            <path
+                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <!--Body-->
+                <div class="my-5 mr-5 ml-5 flex justify-center">
+                    <form id="preferencesForm" class="w-full">
+                        <div>
+                            <div>
+                                <label for="hidePasswords" class="text-md text-gray-800">Parolaları Gizle</label>
+                                <input type="checkbox" id="hidePasswords" autocomplete="off" name="hidePasswords"
+                                    class="form-checkbox mb-4">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="defaultUsername" class="text-md text-gray-800">Default Kullanıcı Adı</label>
+                            </div>
+                            <div>
+                                <input type="text" id="defaultUsername" autocomplete="off" name="defaultUsername"
+                                    class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md"
+                                    placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz.">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--Footer-->
+                <div class="flex justify-end pt-2">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-lg ml-2"
+                        onclick="savePreferences(document.getElementById('preferencesForm'))">Kaydet</button>
+                    <button
+                        class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-lg ml-2"
+                        onclick="modalClose('main-modal')">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
@@ -69,6 +127,7 @@
     //updateCookie({ "platform": "facebook", "username": "furkan", "password": "test123" })
     // console.log(findPlatform('instagram'));
     listAll()
+    handlePreferences()
 </script>
 
 </html>

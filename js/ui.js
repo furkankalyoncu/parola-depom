@@ -5,6 +5,7 @@ $("#newButton").click(function () {
     })
 });
 
+// new record
 $("#new").click(function () {
     event.preventDefault();
     const formData = $('#form').serializeArray()
@@ -15,8 +16,11 @@ $("#new").click(function () {
     setCookie(total)
     $('#newForm').toggle();
     $('#newButton').text('Yeni')
-    $('input').val('')
+    $('input[name=platform]').val('')
+    $('input[name=password]').val('')
+
     listAll()
+    handlePreferences()
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -64,3 +68,29 @@ $(document).ready(function () {
         });
     }, 100);
 });
+
+handlePreferences = () => {
+    const preferences = getCookie('paroladepom_preferences')
+    const defaultUsername = preferences.find(data => data.name === 'defaultUsername')
+    const hidePasswords = preferences.find(data => data.name === 'hidePasswords')
+    if (defaultUsername) {
+        $('#defaultUsername').val(defaultUsername.value)
+        $('input[name=username]').val(defaultUsername.value)
+    }
+    if (hidePasswords) {
+        $('p[name=password]').text('*gizlendi*')
+        $('#hidePasswords').prop('checked', true)
+    } else {
+        listAll()
+    }
+}
+
+modalClose = (modal) => {
+    const modalToClose = document.querySelector('.' + modal);
+    modalToClose.style.display = 'none';
+}
+
+openModal = (modal) => {
+    const modalToOpen = document.querySelector('.' + modal);
+    modalToOpen.style.display = 'flex';
+}

@@ -53,6 +53,7 @@ deleteCookie = (id, name = 'paroladepom') => {
             }), 1);
             Cookies.set(name, currentCookies, { expires: 3500 })
             listAll()
+            handlePreferences()
             Swal.fire(
                 'Silindi',
                 'Patron sensin.',
@@ -62,11 +63,29 @@ deleteCookie = (id, name = 'paroladepom') => {
     })
 }
 
+savePreferences = (form, name = 'paroladepom_preferences') => {
+    const formData = $(form).serializeArray()
+    Cookies.set(name, formData, { expires: 3500 })
+    modalClose('main-modal')
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000
+    })
+    Toast.fire({
+        type: 'success',
+        title: 'Kaydedildi'
+    })
+    handlePreferences()
+}
+
 listAll = () => {
     const data = getCookie()
     var list = $('#list')
     list.html('')
     if (data.length > 0) {
+        list.removeAttr("style")
         for (let i = 0; i < data.length; i++) {
             list.append(`<div class="max-w-sm mx-auto inline-flex">
         <div class="flex flex-col">
@@ -101,7 +120,7 @@ listAll = () => {
                         </div>
                         <div>
                             <h3 class="font-medium">Parola</h3>
-                            <p class="contents" id="password_${data[i].id}">${data[i].password}</p>
+                            <p class="contents" name="password" id="password_${data[i].id}">${data[i].password}</p>
                             <div id="copy" name="copy_${data[i].id}_password" class="contents">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,12 +136,14 @@ listAll = () => {
     </div>`)
         }
     } else {
+        list.css('height', '500px')
+        list.css('display', 'grid')
         list.append(`<ul class="flex flex-wrap flex-col justify-center items-center m-auto subpixel-antialiased">
-        <li>Uyarılar eklenecek</li>
-        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
-      </ul>`)
+        <li>Parola Depom, verilerinizi deplomak için tarayıcınızın cookie sistemini kullanır.</li>
+        <li>Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama alanıdır.</li>
+        <li class="text-red-600">Cookileri temizlerseniz tüm veriler silinir.</li>
+        <li class="text-red-600">Başka bir tarayıcıda açarsanız verileriniz gözükmez çünkü her tarayıcının cookie sistemi farklıdır.</li>
+      </ul>
+      <p class="text-center mt-6">Bir sorun, istek veya sorunuz olursa bana <a href="https://www.furkankalyoncu.net/contact/" target="_blank" class="text-blue-500">buradan</a> ulaşabilirsiniz.</p>`)
     }
 }
