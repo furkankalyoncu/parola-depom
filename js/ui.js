@@ -61,17 +61,6 @@ $(document).ready(function () {
             const name = this.attributes.name.value;
             const getId = name.split('_');
             deleteCookie(getId[1])
-            listAll()
-            // const Toast = Swal.mixin({
-            //     toast: true,
-            //     position: 'top-end',
-            //     showConfirmButton: false,
-            //     timer: 2000
-            // })
-            // Toast.fire({
-            //     type: 'success',
-            //     title: 'Silindi'
-            // })
         });
     }, 100);
 });

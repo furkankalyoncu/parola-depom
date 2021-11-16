@@ -70,7 +70,7 @@ listAll = () => {
         for (let i = 0; i < data.length; i++) {
             list.append(`<div class="max-w-sm mx-auto inline-flex">
         <div class="flex flex-col">
-            <div class="bg-white border border-white shadow-lg  rounded-3xl p-4 m-4">
+            <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="min-width: 16rem;">
                 <div class="flex-none sm:flex">
                     <div class="flex-auto sm:ml-5 justify-evenly">
                         <div class="flex items-center justify-between sm:mt-2">
@@ -79,7 +79,7 @@ listAll = () => {
                                     <div
                                         class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex">
                                         ${data[i].platform}
-                                        <div class="pl-3" id="delete" name="delete_${data[i].id}"><svg
+                                        <div class="pl-1" id="delete" name="delete_${data[i].id}"><svg
                                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
                                                 fill="none" viewBox="0 0 26 26" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
