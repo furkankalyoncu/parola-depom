@@ -9,16 +9,17 @@ $("#newButton").click(function () {
 $("#new").click(function () {
     event.preventDefault();
     const formData = $('#form').serializeArray()
-    const platform = formData[0].value;
-    const username = formData[1].value;
-    const password = formData[2].value;
-    const total = { "platform": platform, "name": username, "password": password };
+    const platform = formData.find(d => d.name === 'platform')
+    const username = formData.find(d => d.name === 'username')
+    const password = formData.find(d => d.name === 'password')
+    const url = formData.find(d => d.name === 'url')
+    const total = { "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
     setCookie(total)
     $('#newForm').toggle();
     $('#newButton').text('Yeni')
     $('input[name=platform]').val('')
     $('input[name=password]').val('')
-
+    $('input[name=url]').val('')
     listAll()
     handlePreferences()
     const Toast = Swal.mixin({
@@ -69,7 +70,6 @@ $(document).ready(function () {
     }, 100);
 });
 
-// yedek
 $("#getBackup").click(function () {
     event.preventDefault();
     Swal.fire({
@@ -86,6 +86,7 @@ $("#getBackup").click(function () {
         }
     })
 });
+
 handlePreferences = () => {
     const preferences = getCookie('paroladepom_preferences')
     const defaultUsername = preferences.find(data => data.name === 'defaultUsername')

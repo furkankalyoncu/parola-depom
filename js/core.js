@@ -29,7 +29,7 @@ getRandomId = (min = 112111, max = 999999) => {
 setCookie = (value, name = 'paroladepom') => {
     let id = getRandomId()
     var currentCookies = getCookie()
-    value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password }
+    value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password, "url": value.url }
     currentCookies.push(value)
     Cookies.set(name, currentCookies, { expires: 3500 })
 }
@@ -104,6 +104,9 @@ uploadBackup = () => {
     reader.addEventListener("load", () => {
         Cookies.set('paroladepom', reader.result, { expires: 3500 })
         listAll()
+        handlePreferences()
+        $('#uploadBackupInput').val('İşlem tamam')
+        $('#uploadBackupInput').css('background-color', '#059905')
     }, false);
 
     if (file) {
@@ -118,16 +121,16 @@ listAll = () => {
     if (data.length > 0) {
         list.removeAttr("style")
         for (let i = 0; i < data.length; i++) {
-            list.append(`<div class="max-w-sm mx-auto inline-flex">
+            list.append(data[i].url === '' ? `<div class="max-w-sm mx-auto inline-flex">
         <div class="flex flex-col">
-            <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="min-width: 16rem;">
+            <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="width: 16rem;">
                 <div class="flex-none sm:flex">
-                    <div class="flex-auto sm:ml-5 justify-evenly">
+                    <div class="flex-auto sm:ml-5 justify-evenly break-words">
                         <div class="flex items-center justify-between sm:mt-2">
                             <div class="flex items-center">
                                 <div class="flex flex-col">
                                     <div
-                                        class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex">
+                                        class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex" style="word-break: break-word;">
                                         ${data[i].platform}
                                         <div class="pl-1" id="delete" name="delete_${data[i].id}"><svg
                                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
@@ -141,7 +144,7 @@ listAll = () => {
                             </div>
                         </div>
                         <h3 class="font-medium">Kullanıcı Adı</h3>
-                        <p class="contents" id="username_${data[i].id}">${data[i].name}</p>
+                        <p class="contents" style="word-break: break-word;" id="username_${data[i].id}">${data[i].name}</p>
                         <div id="copy" name="copy_${data[i].id}_name" class="contents">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -151,7 +154,7 @@ listAll = () => {
                         </div>
                         <div>
                             <h3 class="font-medium">Parola</h3>
-                            <p class="contents" name="password" id="password_${data[i].id}">${data[i].password}</p>
+                            <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
                             <div id="copy" name="copy_${data[i].id}_password" class="contents">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -159,21 +162,82 @@ listAll = () => {
                                     d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>
         </div>
-    </div>`)
+    </div>` : `<div class="max-w-sm mx-auto inline-flex">
+    <div class="flex flex-col">
+        <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="width: 16rem;">
+            <div class="flex-none sm:flex">
+                <div class="flex-auto sm:ml-5 justify-evenly" style="white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;">
+                    <div class="flex items-center justify-between sm:mt-2">
+                        <div class="flex items-center">
+                            <div class="flex flex-col">
+                                <div
+                                    class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex whitespace-normal" style="word-break: break-word;">
+                                    ${data[i].platform}
+                                    <div class="pl-1" id="delete" name="delete_${data[i].id}"><svg
+                                            xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
+                                            fill="none" viewBox="0 0 26 26" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-medium">Kullanıcı Adı</h3>
+                    <p class="contents" style="word-break: break-word;" id="username_${data[i].id}">${data[i].name}</p>
+                    <div id="copy" name="copy_${data[i].id}_name" class="contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">Parola</h3>
+                        <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
+                        <div id="copy" name="copy_${data[i].id}_password" class="contents">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-medium">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    </div></h3> 
+                    <a class="contents" href="${data[i].url}" target="_blank" id="url_${data[i].id}">${data[i].url}</a>
+                   
+                    <div>           
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`)
         }
     } else {
         list.css('height', '500px')
         list.css('display', 'grid')
-        list.append(`<ul class="flex flex-wrap flex-col justify-center items-center m-auto subpixel-antialiased">
+        list.append(`
+        <ul class="flex flex-wrap flex-col justify-center items-center m-auto subpixel-antialiased">
+        <h1 class="text-3xl mb-3">Bilgilendirme</h1>
         <li>Parola Depom, verilerinizi deplomak için tarayıcınızın cookie sistemini kullanır.</li>
         <li>Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama alanıdır.</li>
         <li class="text-red-600">Cookileri temizlerseniz tüm veriler silinir.</li>
         <li class="text-red-600">Başka bir tarayıcıda açarsanız verileriniz gözükmez çünkü her tarayıcının cookie sistemi farklıdır.</li>
+        <li class="text-green-600">Yedek sistemiyle verilerinizin yedeğini alıp istediğiniz zaman geri yükleyebilirsiniz.</li>
       </ul>
       <p class="text-center mt-6">Bir sorun, istek veya sorunuz olursa bana <a href="https://www.furkankalyoncu.net/contact/" target="_blank" class="text-blue-500">buradan</a> ulaşabilirsiniz.</p>`)
     }
