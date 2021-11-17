@@ -91,6 +91,7 @@ handlePreferences = () => {
     const preferences = getCookie('paroladepom_preferences')
     const defaultUsername = preferences.find(data => data.name === 'defaultUsername')
     const hidePasswords = preferences.find(data => data.name === 'hidePasswords')
+    const sortBy = preferences.find(data => data.name === 'sortBy')
     if (defaultUsername) {
         $('#defaultUsername').val(defaultUsername.value)
         $('input[name=username]').val(defaultUsername.value)
@@ -101,10 +102,20 @@ handlePreferences = () => {
     } else {
         listAll()
     }
+
+    if (sortBy.value == 'newer') {
+        $('#list').css('display', 'flex')
+        $('#list').css('flex-flow', 'wrap-reverse')
+        $('#list').css('flex-direction', 'row-reverse')
+        $("#sortBy").val('newer')
+    } else {
+        $("#sortBy").val('older')
+    }
 }
 
 modalClose = (modal) => {
     const modalToClose = document.querySelector('.' + modal);
+    $(modalToClose).attr('name', 'closed')
     $(modalToClose)
         .first()
         .fadeToggle(100)
@@ -113,8 +124,20 @@ modalClose = (modal) => {
 
 openModal = (modal) => {
     const modalToOpen = document.querySelector('.' + modal);
+    $(modalToOpen).attr('name', 'opened')
     $(modalToOpen)
         .first()
         .fadeToggle(50)
         .css("display", "flex")
 }
+
+// handling the enter key
+$('html')[0].addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        if ($('#modal').attr('name') === 'opened') {
+            savePreferences(document.getElementById('preferencesForm'))
+            $('body').focus()
+        }
+    }
+});

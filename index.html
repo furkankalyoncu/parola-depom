@@ -6,20 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/index.css">
     <title>Parola Depom</title>
 </head>
 
 <body>
     <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
-        <h1 class="place-self-center" translate="no">Parola Depom</h2>
+        <h1 class="place-self-center" translate="no" style="font-family: 'Open Sans', sans-serif;">Parola Depom</h2>
     </div>
-    <div class="flex justify-end mx-16">
+    <div class="flex justify-end mr-56">
         <button id="newButton"
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-10 text-lg">
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Yeni
         </button>
         <button id="preferences" onclick="openModal('main-modal')"
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-10 text-lg ml-2">
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg ml-2">
             Tercihler
         </button>
     </div>
@@ -74,7 +75,7 @@
 
     <!-- modal -->
     <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn hidden"
-        style="background: rgba(0,0,0,.7);">
+        style="background: rgba(0,0,0,.7);" id="modal">
         <div
             class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
             <div class="modal-content py-4 text-left px-6">
@@ -92,14 +93,7 @@
                 </div>
                 <!--Body-->
                 <div class="my-5 mr-5 ml-5 flex justify-center">
-                    <form id="preferencesForm" class="w-full">
-                        <div>
-                            <div>
-                                <label for="hidePasswords" class="text-md text-gray-800">Parolaları Gizle</label>
-                                <input type="checkbox" id="hidePasswords" autocomplete="off" name="hidePasswords"
-                                    class="form-checkbox mb-4">
-                            </div>
-                        </div>
+                    <form id="preferencesForm" class="w-full" onkeydown="return event.key != 'Enter';">
                         <div>
                             <div>
                                 <label for="defaultUsername" class="text-md text-gray-800">Default Kullanıcı Adı</label>
@@ -112,17 +106,35 @@
                         </div>
                         <div>
                             <div>
+                                <label for="hidePasswords" class="text-md text-gray-800">Parolaları Gizle</label>
+                                <input type="checkbox" id="hidePasswords" autocomplete="off" name="hidePasswords"
+                                    class="form-checkbox mb-5">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label for="hidePasswords" class="text-md text-gray-800">Sıralama Tercihi</label>
+                                <select name="sortBy" id="sortBy" class="form-select mb-5">
+                                    <option value="newer">Yeniden eskiye</option>
+                                    <option value="older">Eskiden yeniye</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
                                 <label class="text-md text-gray-800">Yedek</label>
                             </div>
-                            <button id="getBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg">
-                                İndir
-                            </button>
-                            <button id="uploadBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg"
+                            <input id="getBackup"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg cursor-pointer"
+                                value="İndir" type="button">
+                            </input>
+                            <input id="uploadBackup"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg cursor-pointer"
+                                value="Yükle" type="button"
                                 onclick="event.preventDefault(), document.getElementById('uploadBackupDiv').style.display = 'block'">
-                                Yükle
-                            </button>
+
+                            </input>
                         </div>
                         <div class="mt-5 hidden" id="uploadBackupDiv">
                             <div>
@@ -132,7 +144,7 @@
                                 <input type="button" id="uploadBackupInput"
                                     onclick="document.getElementById('realUploadBackup').click()" autocomplete="off"
                                     name="uploadBackupInput"
-                                    class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold"
+                                    class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold cursor-pointer"
                                     value="Dosya Seç">
                             </div>
                         </div>
