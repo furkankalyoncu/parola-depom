@@ -92,6 +92,17 @@ handlePreferences = () => {
     const defaultUsername = preferences.find(data => data.name === 'defaultUsername')
     const hidePasswords = preferences.find(data => data.name === 'hidePasswords')
     const sortBy = preferences.find(data => data.name === 'sortBy')
+
+    if (sortBy.value == 'newer') {
+        $('#list').css('display', 'flex')
+        $('#list').css('flex-flow', 'wrap-reverse')
+        $('#list').css('flex-direction', 'row-reverse')
+        $("#sortBy").val('newer')
+    } else {
+        $("#sortBy").val('older')
+        listAll()
+    }
+
     if (defaultUsername) {
         $('#defaultUsername').val(defaultUsername.value)
         $('input[name=username]').val(defaultUsername.value)
@@ -99,19 +110,7 @@ handlePreferences = () => {
     if (hidePasswords) {
         $('p[name=password]').text('*gizlendi*')
         $('#hidePasswords').prop('checked', true)
-    } else {
-        listAll()
     }
-
-    if (sortBy && sortBy.value == 'newer') {
-        $('#list').css('display', 'flex')
-        $('#list').css('flex-flow', 'wrap-reverse')
-        $('#list').css('flex-direction', 'row-reverse')
-        $("#sortBy").val('newer')
-    } else {
-        $("#sortBy").val('older')
-    }
-
 }
 
 modalClose = (modal) => {
