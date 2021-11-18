@@ -241,4 +241,5 @@ listAll = () => {
       </ul>
       <p class="text-center mt-6">Bir sorun, istek veya sorunuz olursa bana <a href="https://www.furkankalyoncu.net/contact/" target="_blank" class="text-blue-500">buradan</a> ulaşabilirsiniz.</p>`)
     }
+    return true
 }

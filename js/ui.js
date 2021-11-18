@@ -103,7 +103,7 @@ handlePreferences = () => {
         listAll()
     }
 
-    if (sortBy.value == 'newer') {
+    if (sortBy && sortBy.value == 'newer') {
         $('#list').css('display', 'flex')
         $('#list').css('flex-flow', 'wrap-reverse')
         $('#list').css('flex-direction', 'row-reverse')
@@ -111,6 +111,7 @@ handlePreferences = () => {
     } else {
         $("#sortBy").val('older')
     }
+
 }
 
 modalClose = (modal) => {
