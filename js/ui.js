@@ -93,20 +93,22 @@ handlePreferences = () => {
     const hidePasswords = preferences.find(data => data.name === 'hidePasswords')
     const sortBy = preferences.find(data => data.name === 'sortBy')
 
-    if (sortBy.value == 'newer') {
-        $('#list').css('display', 'flex')
-        $('#list').css('flex-flow', 'wrap-reverse')
-        $('#list').css('flex-direction', 'row-reverse')
-        $("#sortBy").val('newer')
-    } else {
-        $("#sortBy").val('older')
-        listAll()
+    if (sortBy) {
+        if (sortBy.value == 'newer') {
+            $('#list').css('display', 'flex')
+            $('#list').css('flex-flow', 'wrap-reverse')
+            $('#list').css('flex-direction', 'row-reverse')
+            $("#sortBy").val('newer')
+        } else {
+            $("#sortBy").val('older')
+            listAll()
+        }
     }
-
     if (defaultUsername) {
         $('#defaultUsername').val(defaultUsername.value)
         $('input[name=username]').val(defaultUsername.value)
     }
+
     if (hidePasswords) {
         $('p[name=password]').text('*gizlendi*')
         $('#hidePasswords').prop('checked', true)

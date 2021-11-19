@@ -8,6 +8,16 @@
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/index.css">
     <title>Parola Depom</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVF7T8YYJB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JVF7T8YYJB');
+    </script>
 </head>
 
 <body>
@@ -116,7 +126,7 @@
                                 <label for="hidePasswords" class="text-md text-gray-800">Sıralama Tercihi</label>
                                 <select name="sortBy" id="sortBy" class="form-select mb-5">
                                     <option value="newer">Yeniden eskiye</option>
-                                    <option value="older">Eskiden yeniye</option>
+                                    <option value="older" selected>Eskiden yeniye</option>
                                 </select>
                             </div>
                         </div>
@@ -132,7 +142,7 @@
                             <input id="uploadBackup"
                                 class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg cursor-pointer"
                                 value="Yükle" type="button"
-                                onclick="event.preventDefault(), document.getElementById('uploadBackupDiv').style.display = 'block'">
+                                onclick="event.preventDefault(), $('#uploadBackupDiv').toggle()">
 
                             </input>
                         </div>
