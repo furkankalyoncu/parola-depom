@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/index.css">
+    <meta name="description" content="Tarayıcı tabanlı parola depolama.">
     <title>Parola Depom</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVF7T8YYJB"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVF7T8YYJB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -18,7 +19,7 @@
 
         gtag('config', 'G-JVF7T8YYJB');
     </script>
-</head>
+</head> -->
 
 <body>
     <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
@@ -74,6 +75,66 @@
                     <button
                         class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                         id="new" type="submit">Ekle</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="editForm">
+        <div class="grid grid-cols-1 text-center text-2xl justify-items-end cursor-pointer" id="closeEdit">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+
+        <div class="grid grid-cols-1 mt-5 mx-7 text-center text-2xl font-bold">
+            <h2 id="title">Düzenle</h2>
+        </div>
+        <div class="grid grid-cols-1 mt-5 mx-7 text-center text-xl">
+            <h2 id="editTitle">Düzenle</h2>
+        </div>
+        <form method="POST" id="form" autocomplete="off">
+            <div class="text-center space-y-2 sm:text-left">
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <p class="text-lg text-black font-semibold">
+                        Platform
+                    </p>
+                    <input
+                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        type="text" name="editPlatform" id="editPlatform" />
+                </div>
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <p class="text-lg text-black font-semibold">
+                        URL
+                    </p>
+                    <input
+                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        type="text" name="editURL" id="editURL" placeholder="opsiyonel" />
+                </div>
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <p class="text-lg text-black font-semibold">
+                        Kullanıcı Adı
+                    </p>
+                    <input
+                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        type="text" name="editUsername" id="editUsername" />
+                </div>
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <p class="text-lg text-black font-semibold">
+                        Parola
+                    </p>
+                    <input
+                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                        type="text" name="editPassword" id="editPassword" />
+                </div>
+                <div class="grid grid-cols-1 mt-5 mx-7">
+                    <button
+                        class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+                        id="editSave" type="submit">Kaydet</button>
+                    <button
+                        class="px-4 py-2 text-base text-red-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 mt-2"
+                        id="editCancel" type="button">İptal</button>
                 </div>
             </div>
         </form>
@@ -177,8 +238,8 @@
     <input type="file" onchange="uploadBackup()" class="invisible" id="realUploadBackup">
 
     <footer class="flex justify-center mt-10 mb-4">
-        <p>made by <a class="text-blue-400" href="https://furkankalyoncu.net" target="_blank">Furkan</a> •&nbsp;</p>
-        <a class="text-blue-400" href="https://github.com/furkankalyoncu/parola-depom" target="_blank">Github</a>
+        <p>made by <a class="text-blue-400" href="https://furkankalyoncu.net" target="_blank" rel="noopener">Furkan</a> •&nbsp;</p>
+        <a class="text-blue-400" href="https://github.com/furkankalyoncu/parola-depom" target="_blank" rel="noopener">Github</a>
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
