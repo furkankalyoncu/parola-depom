@@ -70,6 +70,50 @@ $(document).ready(function () {
     }, 100);
 });
 
+// edit
+$(document).ready(function () {
+    setTimeout(function () {
+        $(document).on('click', '#edit', function () {
+            const name = this.attributes.name.value;
+            const getId = name.split('_');
+            $('#editForm').show()
+            const record = findById(getId[1])
+            $('#editTitle').html(record.platform)
+            $('#editPlatform').val(record.platform)
+            $('#editURL').val(record.url)
+            $('#editUsername').val(record.name)
+            $('#editPassword').val(record.password)
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+            //deleteCookie(getId[1])
+        });
+    }, 100);
+});
+
+// handle cancel and close button in edit form
+$(document).on('click', '#closeEdit, #editCancel', function () {
+    Swal.fire({
+        title: 'Emin misin?',
+        text: `Düzenleme iptal edilecek ve geri alınamaz.`,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Evet',
+        cancelButtonText: 'Hayır'
+    }).then((result) => {
+        if (result.value === true) {
+            event.preventDefault()
+            $('#editForm').slideUp(200);
+            setTimeout(function () {
+                $('#editTitle').html('')
+                $('#editPlatform').val('')
+                $('#editURL').val('')
+                $('#editUsername').val('')
+                $('#editPassword').val('')
+            }, 200);
+        }
+    })
+});
+
 $("#getBackup").click(function () {
     event.preventDefault();
     Swal.fire({

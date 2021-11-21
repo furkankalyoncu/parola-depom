@@ -121,111 +121,69 @@ listAll = () => {
     if (data.length > 0) {
         list.removeAttr("style")
         for (let i = 0; i < data.length; i++) {
-            list.append(data[i].url === '' ? `<div class="max-w-sm mx-auto inline-flex">
-        <div class="flex flex-col">
-            <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="width: 16rem;">
-                <div class="flex-none sm:flex">
-                    <div class="flex-auto sm:ml-5 justify-evenly break-words">
-                        <div class="flex items-center justify-between sm:mt-2">
-                            <div class="flex items-center">
-                                <div class="flex flex-col">
-                                    <div
-                                        class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex" style="word-break: break-word;">
-                                        ${data[i].platform}
-                                        <div class="pl-1" id="delete" name="delete_${data[i].id}"><svg
-                                                xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
-                                                fill="none" viewBox="0 0 26 26" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-medium">Kullanıcı Adı</h3>
-                        <p class="contents" style="word-break: break-word;" id="username_${data[i].id}">${data[i].name}</p>
-                        <div id="copy" name="copy_${data[i].id}_name" class="contents">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-medium">Parola</h3>
-                            <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
-                            <div id="copy" name="copy_${data[i].id}_password" class="contents">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                            </div>
-                        </div>  
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>` : `<div class="max-w-sm mx-auto inline-flex">
-    <div class="flex flex-col">
-        <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="width: 16rem;">
-            <div class="flex-none sm:flex">
-                <div class="flex-auto sm:ml-5 justify-evenly" style="white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;">
-                    <div class="flex items-center justify-between sm:mt-2">
-                        <div class="flex items-center">
-                            <div class="flex flex-col">
-                                <div
-                                    class="w-full flex-none text-lg text-gray-800 font-bold leading-none pb-3 flex whitespace-normal" style="word-break: break-word;">
-                                    ${data[i].platform}
-                                    <div class="pl-1" id="delete" name="delete_${data[i].id}"><svg
+            raw = `<div class="max-w-sm mx-auto inline-flex">
+            <div class="flex flex-col">
+                <div class="bg-white border border-white shadow-lg rounded-3xl p-4 m-4" style="width: 16rem;">
+                    <div class="flex-none sm:flex">
+                        <div class="flex-auto sm:ml-5 justify-evenly" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <div class="items-center sm:mt-2">
+                                <div class="items-center">
+                                    <div class="flex justify-between">
+                                        <div
+                                            class="text-lg text-gray-800 font-bold leading-none pb-3 whitespace-normal" style="word-break: break-word;">
+                                            ${data[i].platform}  
+                                        </div>
+                                        <div class="flex">
+                                        <!-- <div class="pl-1" id="edit" name="edit_${data[i].id}"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 28 28" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg></div> -->
+                                    <div id="delete" name="delete_${data[i].id}"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
-                                            fill="none" viewBox="0 0 26 26" stroke="currentColor">
+                                            fill="none" viewBox="0 0 28 28" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 stroke-width="2"
                                                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <h3 class="font-medium">Kullanıcı Adı</h3>
-                    <p class="contents" style="word-break: break-word;" id="username_${data[i].id}">${data[i].name}</p>
-                    <div id="copy" name="copy_${data[i].id}_name" class="contents">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-medium">Parola</h3>
-                        <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
-                        <div id="copy" name="copy_${data[i].id}_password" class="contents">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                        </div>
-                    </div>
-                    <h3 class="font-medium">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    </div></h3> 
-                    <a class="contents" href="${data[i].url}" target="_blank" id="url_${data[i].id}">${data[i].url}</a>
-                   
-                    <div>           
-                </div>
-            </div>
-        </div>
-    </div>
-</div>`)
+                            <div class="pb-2.5">
+                            <h3 class="font-medium">Kullanıcı Adı</h3>
+                            <p class="contents break-words whitespace-normal" id="username_${data[i].id}">${data[i].name}</p>
+                            <div id="copy" name="copy_${data[i].id}_name" class="contents">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                                fill="none" viewBox="0 -2 28 28" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            </div>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">Parola</h3>
+                                <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
+                                <div id="copy" name="copy_${data[i].id}_password" class="contents">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                                    fill="none" viewBox="0 -2 28 28" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                                </div>
+                                </div>
+                            `
+            if (data[i].url != '') {
+                raw += `
+                                <h3 class="font-medium pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
+                                    fill="none" viewBox="0 -2 28 28" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                                </div></h3> 
+                                <a class="contents" href="${data[i].url}" target="_blank" id="url_${data[i].id}" rel="noopener noreferrer nofollow">${data[i].url}</a>
+                                `}
+            raw += `</div></div></div></div></div>`
+            list.append(raw)
         }
     } else {
         list.css('height', '500px')
