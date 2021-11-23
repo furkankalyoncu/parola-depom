@@ -94,7 +94,7 @@
         <div class="grid grid-cols-1 mt-5 mx-7 text-center text-xl">
             <h2 id="editTitle">Düzenle</h2>
         </div>
-        <form method="POST" id="form" autocomplete="off">
+        <form method="POST" id="editFormForm" autocomplete="off">
             <div class="text-center space-y-2 sm:text-left">
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <p class="text-lg text-black font-semibold">
@@ -128,6 +128,7 @@
                         class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                         type="text" name="editPassword" id="editPassword" />
                 </div>
+                <input type="hidden" name="editId" id="editId">
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <button
                         class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"

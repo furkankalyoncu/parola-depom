@@ -37,7 +37,7 @@ setCookie = (value, name = 'paroladepom') => {
 deleteCookie = (id, name = 'paroladepom') => {
     let intId = parseInt(id, 10)
     let currentCookies = getCookie()
-    let record = currentCookies.find(d => d.id === intId)
+    let record = currentCookies.find(d => d.id === intId) || ''
     Swal.fire({
         title: 'Emin misin?',
         text: `${record.platform} kaydı emrinle silinecek. Cümle alem toplansa geri getiremez bir daha.`,
@@ -61,6 +61,17 @@ deleteCookie = (id, name = 'paroladepom') => {
             )
         }
     })
+}
+
+editCookie = (id, data) => {
+    let currentCookies = getCookie()
+    let intId = parseInt(id, 10)
+    let objIndex = currentCookies.findIndex((d => d.id == intId));
+    currentCookies[objIndex].platform = data.platform
+    currentCookies[objIndex].name = data.name
+    currentCookies[objIndex].password = data.password
+    currentCookies[objIndex].url = data.url
+    Cookies.set('paroladepom', currentCookies, { expires: 3500 })
 }
 
 savePreferences = (form, name = 'paroladepom_preferences') => {
@@ -134,9 +145,9 @@ listAll = () => {
                                             ${data[i].platform}  
                                         </div>
                                         <div class="flex">
-                                        <!-- <div class="pl-1" id="edit" name="edit_${data[i].id}"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 28 28" stroke="currentColor">
+                                        <div class="pl-1" id="edit" name="edit_${data[i].id}"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 28 28" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg></div> -->
+                                    </svg></div>
                                     <div id="delete" name="delete_${data[i].id}"><svg
                                             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer"
                                             fill="none" viewBox="0 0 28 28" stroke="currentColor">

@@ -70,30 +70,67 @@ $(document).ready(function () {
     }, 100);
 });
 
-// edit
+// edit button
 $(document).ready(function () {
     setTimeout(function () {
         $(document).on('click', '#edit', function () {
             const name = this.attributes.name.value;
             const getId = name.split('_');
-            $('#editForm').show()
+            //$('#editForm').show()
             const record = findById(getId[1])
             $('#editTitle').html(record.platform)
             $('#editPlatform').val(record.platform)
             $('#editURL').val(record.url)
             $('#editUsername').val(record.name)
             $('#editPassword').val(record.password)
+            $('#editId').val(record.id)
             $('html, body').animate({ scrollTop: 0 }, 'fast');
-            //deleteCookie(getId[1])
+            $('#editForm').fadeIn(200, 'linear');
         });
     }, 100);
+});
+
+// edit record
+$(document).ready(function () {
+    $(document).on('click', '#editSave', function () {
+        event.preventDefault()
+        const formData = $('#editFormForm').serializeArray()
+        const getId = $('#editId').val()
+        const platform = formData.find(d => d.name === 'editPlatform')
+        const username = formData.find(d => d.name === 'editUsername')
+        const password = formData.find(d => d.name === 'editPassword')
+        const url = formData.find(d => d.name === 'editURL')
+        const total = { "id": getId, "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
+        editCookie(getId, total)
+        listAll()
+        handlePreferences()
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        })
+        Toast.fire({
+            type: 'success',
+            title: 'Başarıyla güncellendi'
+        })
+        $('#editForm').slideUp(200);
+        setTimeout(function () {
+            $('#editTitle').html('Düzenle')
+            $('#editPlatform').val('')
+            $('#editURL').val('')
+            $('#editUsername').val('')
+            $('#editPassword').val('')
+            $('#editId').val('')
+        }, 200);
+    });
 });
 
 // handle cancel and close button in edit form
 $(document).on('click', '#closeEdit, #editCancel', function () {
     Swal.fire({
         title: 'Emin misin?',
-        text: `Düzenleme iptal edilecek ve geri alınamaz.`,
+        text: `Düzenleme iptal edilecek ve bu geri alınamaz.`,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
