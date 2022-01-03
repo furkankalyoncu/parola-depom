@@ -31,7 +31,7 @@ setCookie = (value, name = 'paroladepom') => {
     var currentCookies = getCookie()
     value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password, "url": value.url }
     currentCookies.push(value)
-    Cookies.set(name, currentCookies, { expires: 3500 })
+    Cookies.set(name, currentCookies, { expires: 3500, secure: true })
 }
 
 deleteCookie = (id, name = 'paroladepom') => {
@@ -51,7 +51,7 @@ deleteCookie = (id, name = 'paroladepom') => {
             currentCookies.splice(currentCookies.findIndex(function (i) {
                 return i.id === intId;
             }), 1);
-            Cookies.set(name, currentCookies, { expires: 3500 })
+            Cookies.set(name, currentCookies, { expires: 3500, secure: true })
             listAll()
             handlePreferences()
             Swal.fire(
@@ -71,12 +71,12 @@ editCookie = (id, data) => {
     currentCookies[objIndex].name = data.name
     currentCookies[objIndex].password = data.password
     currentCookies[objIndex].url = data.url
-    Cookies.set('paroladepom', currentCookies, { expires: 3500 })
+    Cookies.set('paroladepom', currentCookies, { expires: 3500, secure: true })
 }
 
 savePreferences = (form, name = 'paroladepom_preferences') => {
     const formData = $(form).serializeArray()
-    Cookies.set(name, formData, { expires: 3500 })
+    Cookies.set(name, formData, { expires: 3500, secure: true })
     modalClose('main-modal')
     const Toast = Swal.mixin({
         toast: true,
@@ -113,7 +113,7 @@ uploadBackup = () => {
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
-        Cookies.set('paroladepom', reader.result, { expires: 3500 })
+        Cookies.set('paroladepom', reader.result, { expires: 3500, secure: true })
         listAll()
         handlePreferences()
         $('#uploadBackupInput').val('İşlem tamam')
