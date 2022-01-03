@@ -13,8 +13,9 @@ $("#new").click(function () {
     const username = formData.find(d => d.name === 'username')
     const password = formData.find(d => d.name === 'password')
     const url = formData.find(d => d.name === 'url')
-    const total = { "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
-    setCookie(total)
+    console.log(url.value);
+    const newTotal = { "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
+    setCookie(newTotal)
     $('#newForm').toggle();
     $('#newButton').text('Yeni')
     $('input[name=platform]').val('')
@@ -100,7 +101,8 @@ $(document).ready(function () {
         const username = formData.find(d => d.name === 'editUsername')
         const password = formData.find(d => d.name === 'editPassword')
         const url = formData.find(d => d.name === 'editURL')
-        const total = { "id": getId, "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
+        const total = { "id": getId, "platform": platform.value, "name": username.value, "password": password.value };
+        url.value != '' ? total.url = url.value : '';
         editCookie(getId, total)
         listAll()
         handlePreferences()

@@ -27,11 +27,12 @@ getRandomId = (min = 112111, max = 999999) => {
 }
 
 setCookie = (value, name = 'paroladepom') => {
-    let id = getRandomId()
-    var currentCookies = getCookie()
-    value = { "id": id, "platform": value.platform, "name": value.name, "password": value.password, "url": value.url }
-    currentCookies.push(value)
-    Cookies.set(name, currentCookies, { expires: 3500, secure: true })
+    let id = getRandomId();
+    var currentCookies = getCookie();
+    let newValue = { "id": id, "platform": value.platform, "name": value.name, "password": value.password };
+    typeof value.url != undefined ? newValue.url = value.url : {};
+    currentCookies.push(newValue);
+    Cookies.set(name, currentCookies, { expires: 3500, secure: true });
 }
 
 deleteCookie = (id, name = 'paroladepom') => {
@@ -64,14 +65,14 @@ deleteCookie = (id, name = 'paroladepom') => {
 }
 
 editCookie = (id, data) => {
-    let currentCookies = getCookie()
-    let intId = parseInt(id, 10)
+    let currentCookies = getCookie();
+    let intId = parseInt(id, 10);
     let objIndex = currentCookies.findIndex((d => d.id == intId));
-    currentCookies[objIndex].platform = data.platform
-    currentCookies[objIndex].name = data.name
-    currentCookies[objIndex].password = data.password
-    currentCookies[objIndex].url = data.url
-    Cookies.set('paroladepom', currentCookies, { expires: 3500, secure: true })
+    currentCookies[objIndex].platform = data.platform;
+    currentCookies[objIndex].name = data.name;
+    currentCookies[objIndex].password = data.password;
+    typeof currentCookies[objIndex].url != undefined ? currentCookies[objIndex].url = data.url : {};
+    Cookies.set('paroladepom', currentCookies, { expires: 3500, secure: true });
 }
 
 savePreferences = (form, name = 'paroladepom_preferences') => {
@@ -182,7 +183,7 @@ listAll = () => {
                                     </div>
                                         </div>
                             `
-            if (data[i].url != '') {
+            if (data[i].url != '' && data[i].url != undefined) {
                 raw += `
                                 <h3 class="font-medium pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
