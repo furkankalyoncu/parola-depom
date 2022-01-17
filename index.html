@@ -252,8 +252,7 @@
 <script src="js/core.js"></script>
 <script src="js/ui.js"></script>
 <script>
-    const url = new URL(document.location.href)
-    console.log(url);
+    const url = new URL(document.location.href);
     url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
     listAll()
     handlePreferences()
