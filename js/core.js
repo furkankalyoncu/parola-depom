@@ -2,8 +2,8 @@ getCookie = (name = 'paroladepom') => {
     const getCookie = Cookies.get(name)
     const getLocalStorage = localStorage.getItem(name)
     let data = []
-    getLocalStorage !== undefined ? data = JSON.parse(getLocalStorage) : false
-    return data || [{}]
+    getLocalStorage !== '' ? data = JSON.parse(getLocalStorage) : false
+    return data || []
 }
 
 findPlatform = (platform) => {
