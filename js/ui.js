@@ -13,7 +13,6 @@ $("#new").click(function () {
     const username = formData.find(d => d.name === 'username')
     const password = formData.find(d => d.name === 'password')
     const url = formData.find(d => d.name === 'url')
-    console.log(url.value);
     const newTotal = { "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
     setCookie(newTotal)
     $('#newForm').toggle();
