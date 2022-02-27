@@ -195,7 +195,7 @@ $("#getBackup").click(function () {
 });
 
 handlePreferences = () => {
-    const preferences = getCookie('paroladepom_preferences')
+    const preferences = JSON.parse(Cookies.get('paroladepom_preferences'))
     const defaultUsername = preferences.find(data => data.name === 'defaultUsername')
     const hidePasswords = preferences.find(data => data.name === 'hidePasswords')
     const sortBy = preferences.find(data => data.name === 'sortBy')
