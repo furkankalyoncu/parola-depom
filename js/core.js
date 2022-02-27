@@ -1,7 +1,8 @@
 getCookie = (name = 'paroladepom') => {
     const getCookie = Cookies.get(name)
+    const getLocalStorage = localStorage.getItem(name)
     let data = []
-    getCookie !== undefined ? data = JSON.parse(getCookie) : false
+    getLocalStorage !== undefined ? data = JSON.parse(getLocalStorage) : false
     return data || [{}]
 }
 
@@ -20,7 +21,7 @@ getRandomId = (min = 112111, max = 999999) => {
     max = Math.floor(max);
     const num = Math.floor(Math.random() * (max - min + 1) + min);
     if (findById(num)) {
-        getRandomId()
+        return getRandomId()
     } else {
         return num
     }
@@ -32,7 +33,8 @@ setCookie = (value, name = 'paroladepom') => {
     let newValue = { "id": id, "platform": value.platform, "name": value.name, "password": value.password };
     typeof value.url != undefined ? newValue.url = value.url : {};
     currentCookies.push(newValue);
-    Cookies.set(name, currentCookies, { expires: 3500, secure: true });
+    localStorage.setItem(name, JSON.stringify(currentCookies));
+    // Cookies.set(name, currentCookies, { expires: 3500, secure: true });
 }
 
 deleteCookie = (id, name = 'paroladepom') => {
@@ -52,7 +54,7 @@ deleteCookie = (id, name = 'paroladepom') => {
             currentCookies.splice(currentCookies.findIndex(function (i) {
                 return i.id === intId;
             }), 1);
-            Cookies.set(name, currentCookies, { expires: 3500, secure: true })
+            localStorage.setItem(name, JSON.stringify(currentCookies));
             listAll()
             handlePreferences()
             Swal.fire(
@@ -72,7 +74,8 @@ editCookie = (id, data) => {
     currentCookies[objIndex].name = data.name;
     currentCookies[objIndex].password = data.password;
     typeof currentCookies[objIndex].url != undefined ? currentCookies[objIndex].url = data.url : {};
-    Cookies.set('paroladepom', currentCookies, { expires: 3500, secure: true });
+    // Cookies.set('paroladepom', currentCookies, { expires: 3500, secure: true });
+    localStorage.setItem('paroladepom', JSON.stringify(currentCookies));
 }
 
 savePreferences = (form, name = 'paroladepom_preferences') => {
@@ -114,7 +117,8 @@ uploadBackup = () => {
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
-        Cookies.set('paroladepom', reader.result, { expires: 3500, secure: true })
+        // Cookies.set('paroladepom', reader.result, { expires: 3500, secure: true })
+        localStorage.setItem('paroladepom', reader.result)
         listAll()
         handlePreferences()
         $('#uploadBackupInput').val('İşlem tamam')
@@ -161,7 +165,7 @@ listAll = () => {
                                 </div>
                             </div>
                             <div class="pb-2">
-                            <h3 class="font-medium">Kullanıcı Adı</h3>
+                            <h3 class="font-medium" id="username_h3">Kullanıcı</h3>
                             <p class="contents break-words whitespace-normal" id="username_${data[i].id}">${data[i].name}</p>
                             <div id="copy" name="copy_${data[i].id}_name" class="contents">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
@@ -172,7 +176,7 @@ listAll = () => {
                             </div>
                             </div>
                             <div>
-                                <h3 class="font-medium">Parola</h3>
+                                <h3 class="font-medium" id="password_h3">Parola</h3>
                                 <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
                                 <div id="copy" name="copy_${data[i].id}_password" class="contents">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
@@ -185,14 +189,14 @@ listAll = () => {
                             `
             if (data[i].url != '' && data[i].url != undefined) {
                 raw += `
-                                <h3 class="font-medium pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
+                                <div><h3 class="font-medium pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
                                     fill="none" viewBox="0 -2 28 28" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
                                 </div></h3> 
-                                <a class="contents" href="${data[i].url}" target="_blank" id="url_${data[i].id}" rel="noopener noreferrer nofollow">${data[i].url}</a>
+                                <a class="contents" href="${data[i].url}" target="_blank" id="url_${data[i].id}" rel="noopener noreferrer nofollow">${data[i].url}</a></div>
                                 `}
             raw += `</div></div></div></div></div>`
             list.append(raw)

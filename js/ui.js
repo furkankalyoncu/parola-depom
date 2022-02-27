@@ -40,9 +40,30 @@ $(document).ready(function () {
     setTimeout(function () {
         $(document).on('click', '#copy', function () {
             const name = this.attributes.name.value;
-            const getId = name.split('_');
-            const find = findById(getId[1]);
-            navigator.clipboard.writeText(find[getId[2]]).then(function () {
+            const splitThis = name.split('_');
+            const find = findById(splitThis[1]);
+            $('h3').css({ 'color': 'black' })
+            $('[id=username_h3]').text('Kullanıcı')
+            $('[id=password_h3]').text('Parola')
+
+            if (splitThis[2] === 'password') {
+                const passwordP = $('#password_' + splitThis[1]).closest('p')
+                const passwordH3 = $(passwordP).prev('h3')
+                $(passwordH3).text($(passwordH3).text() + ' (son kopyalanan)')
+                $(passwordH3).css('color', 'green')
+            } else if (splitThis[2] === 'name') {
+                const usernameP = $('#username_' + splitThis[1]).closest('p')
+                const usernameH3 = $(usernameP).prev('h3')
+                $(usernameH3).text($(usernameH3).text() + ' (son kopyalanan)')
+                $(usernameH3).css('color', 'green')
+            } else if (splitThis[2] === 'url') {
+                const urlP = $('#url_' + splitThis[1]).prev()
+                const urlH3 = $(urlP).closest('h3')
+                $(urlH3).css('color', 'green')
+                $(urlH3).css('color', 'green')
+            }
+
+            navigator.clipboard.writeText(find[splitThis[2]]).then(function () {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -54,6 +75,10 @@ $(document).ready(function () {
                     title: 'Kopyalandı'
                 })
             }, function (err) {
+                Toast.fire({
+                    type: 'error',
+                    title: 'Kopyalanamadı!'
+                })
                 console.error('Async: Could not copy text: ', err);
             });
         });
@@ -71,7 +96,7 @@ $(document).ready(function () {
     }, 100);
 });
 
-// edit button
+// edit record
 $(document).ready(function () {
     setTimeout(function () {
         $(document).on('click', '#edit', function () {
