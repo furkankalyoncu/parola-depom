@@ -21,7 +21,6 @@
     </script>
 </head>
 
-
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="https://paroladepom.com" class="flex items-center">
@@ -62,18 +61,7 @@
     </div>
 </nav>
 
-
 <body>
-    <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
-        <!-- <h1 class="place-self-center" translate="no" style="font-family: 'Open Sans', sans-serif;">Parola Depom</h2> -->
-    </div>
-    <!-- <div class="flex justify-end px-48 sm:px-28 lg:px-48">
-        <button id="newButton"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-            Yeni
-        </button>
-    </div> -->
-
     <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="newForm">
         <form method="POST" id="form" autocomplete="off">
             <div class="text-center space-y-2 sm:text-left">
@@ -179,7 +167,7 @@
         </form>
     </div>
 
-    <div class="container mx-auto pt-6 px-72" id="search-component">
+    <div class="container mx-auto pt-6 lg:pr-80 lg:pl-80 md:pl-32 md:pr-32 pr-20 pl-20" id="search-component">
         <label for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Ara</label>
         <div class="relative">
@@ -198,7 +186,6 @@
         </div>
 
         <p class="text-center text-md font-bold pt-6 hidden" id="not-found">Sonuç bulunamadı.</p>
-
     </div>
     <div class="max-w-4xl ml-auto mr-auto pt-6" id="list">
 
@@ -225,23 +212,13 @@
                 <!--Body-->
                 <div class="my-5 mr-5 ml-5 flex justify-center">
                     <form id="preferencesForm" class="w-full" onkeydown="return event.key != 'Enter';">
-                        <!-- <div>
-                            <div>
-                                <label for="defaultUsername" class="text-md text-gray-800">Default Kullanıcı Adı</label>
-                            </div>
-                            <div>
-                                <input type="text" id="defaultUsername" autocomplete="off" name="defaultUsername"
-                                    class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md"
-                                    placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz.">
-                            </div>
-                        </div> -->
                         <div class="mb-6">
                             <label for="default-input"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
                                 Kullanıcı Adı</label>
                             <input type="text" id="defaultUsername" autocomplete="off" name="defaultUsername"
                                 placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz."
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
                             <div class="flex pb-3">
@@ -305,10 +282,10 @@
                 <!--Footer-->
                 <div class="flex justify-end pt-2">
                     <button
-                        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-lg ml-2"
+                        class="bg-blue-500 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-md cursor-pointer mr-2"
                         onclick="savePreferences(document.getElementById('preferencesForm'))">Kaydet</button>
                     <button
-                        class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-lg ml-2"
+                        class="bg-red-500 hover:bg-red-500 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-md cursor-pointer"
                         onclick="modalClose('main-modal')">Kapat</button>
                 </div>
             </div>
@@ -317,12 +294,18 @@
 
     <input type="file" onchange="uploadBackup()" class="invisible" id="realUploadBackup">
 
-    <footer class="flex justify-center mt-10 mb-4">
-        <p>made by <a class="text-blue-400" href="https://furkankalyoncu.net" target="_blank" rel="noopener">Furkan</a>
-            •&nbsp;</p>
-        <a class="text-blue-400" href="https://github.com/furkankalyoncu/parola-depom" target="_blank"
-            rel="noopener">Github</a>
+    <footer class="p-4 bg-white rounded-lg shadow flex justify-center md:items-center md:p-6 dark:bg-gray-800">
+        <ul class="flex items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+            <li>
+                <a href="https://furkan.dev" target="_blank"
+                    class="mr-4 hover:underline md:mr-6 font-semibold">furkan.dev</a>
+            </li>
+            <li>
+                <a href="https://github.com/furkankalyoncu/parola-depom" target="_blank" class="mr-4 md:mr-6">Github</a>
+            </li>
+        </ul>
     </footer>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
@@ -332,7 +315,7 @@
 <script src="js/ui.js"></script>
 <script>
     const url = new URL(document.location.href);
-    url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
+    // url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
     listAll()
     handlePreferences()
 </script>

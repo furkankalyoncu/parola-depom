@@ -16,7 +16,7 @@ $("#new").click(function () {
     const newTotal = { "platform": platform.value, "name": username.value, "password": password.value, "url": url.value };
     setCookie(newTotal)
     $('#newForm').toggle();
-    $('#newButton').text('Yeni')
+    $('#newButton').text('Yeni Ekle')
     $('input[name=platform]').val('')
     $('input[name=password]').val('')
     $('input[name=url]').val('')
@@ -220,7 +220,7 @@ handlePreferences = () => {
     }
 
     if (hidePasswords) {
-        $('p[name=password]').text('*gizlendi*')
+        $('p[name=password]').text('********')
         $('#hidePasswords').prop('checked', true)
     }
 }

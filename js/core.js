@@ -130,7 +130,6 @@ uploadBackup = () => {
     }
 }
 
-// if any key is pressed 
 $('#default-search').on('keyup', function (e) {
     const data = getCookie()
     const filteredData = data.filter(d => d.platform.toLowerCase().includes(e.target.value.toLowerCase()))
@@ -174,7 +173,7 @@ listAll = (data = getCookie(), listType = 'default') => {
                                 </div>
                             </div>
                             <div class="pb-2">
-                            <h3 class="font-medium" id="username_h3">Kullanıcı</h3>
+                            <h3 class="font-normal" id="username_h3">Kullanıcı</h3>
                             <p class="contents break-words whitespace-normal" id="username_${data[i].id}">${data[i].name}</p>
                             <div id="copy" name="copy_${data[i].id}_name" class="contents">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
@@ -185,7 +184,7 @@ listAll = (data = getCookie(), listType = 'default') => {
                             </div>
                             </div>
                             <div>
-                                <h3 class="font-medium" id="password_h3">Parola</h3>
+                                <h3 class="font-normal" id="password_h3">Parola</h3>
                                 <p class="contents" style="word-break: break-word;" name="password" id="password_${data[i].id}">${data[i].password}</p>
                                 <div id="copy" name="copy_${data[i].id}_password" class="contents">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
@@ -198,7 +197,7 @@ listAll = (data = getCookie(), listType = 'default') => {
                             `
             if (data[i].url != '' && data[i].url != undefined) {
                 raw += `
-                                <div><h3 class="font-medium pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
+                                <div><h3 class="font-normal pt-3">URL  <div id="copy" name="copy_${data[i].id}_url" class="contents">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block cursor-pointer"
                                     fill="none" viewBox="0 -2 28 28" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
