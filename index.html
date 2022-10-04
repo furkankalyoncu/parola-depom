@@ -25,7 +25,7 @@
     <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
         <h1 class="place-self-center" translate="no" style="font-family: 'Open Sans', sans-serif;">Parola Depom</h2>
     </div>
-    <div class="flex justify-end mr-56">
+    <div class="flex justify-end px-48 sm:px-28 lg:px-48">
         <button id="newButton"
             class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Yeni
@@ -141,6 +141,27 @@
         </form>
     </div>
 
+    <div class="container mx-auto pt-6 px-72" id="search-component">
+        <label for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Ara</label>
+        <div class="relative">
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <input type="search" id="default-search"
+                class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Bir başlık ara..." autocomplete="off">
+            <!-- <button type="submit"
+                    class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> -->
+        </div>
+
+        <p class="text-center text-md font-bold pt-6 hidden" id="not-found">Sonuç bulunamadı.</p>
+
+    </div>
     <div class="max-w-4xl ml-auto mr-auto pt-6" id="list">
 
     </div>
@@ -166,7 +187,7 @@
                 <!--Body-->
                 <div class="my-5 mr-5 ml-5 flex justify-center">
                     <form id="preferencesForm" class="w-full" onkeydown="return event.key != 'Enter';">
-                        <div>
+                        <!-- <div>
                             <div>
                                 <label for="defaultUsername" class="text-md text-gray-800">Default Kullanıcı Adı</label>
                             </div>
@@ -175,34 +196,54 @@
                                     class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md"
                                     placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz.">
                             </div>
+                        </div> -->
+                        <div class="mb-6">
+                            <label for="default-input"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                Kullanıcı Adı</label>
+                            <input type="text" id="defaultUsername" autocomplete="off" name="defaultUsername"
+                                placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz."
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
-                            <div>
-                                <label for="hidePasswords" class="text-md text-gray-800">Parolaları Gizle</label>
-                                <input type="checkbox" id="hidePasswords" autocomplete="off" name="hidePasswords"
-                                    class="form-checkbox mb-5">
+                            <div class="flex pb-3">
+                                <div class="flex items-center h-5">
+                                    <input id="hidePasswords" autocomplete="off" name="hidePasswords"
+                                        aria-describedby="hidePasswords-text" type="checkbox" value=""
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <div class="ml-2 text-sm">
+                                    <label for="hidePasswords"
+                                        class="font-medium text-gray-900 dark:text-gray-300">Parolaları Gizle</label>
+                                    <p id="hidePasswords-text"
+                                        class="text-xs font-normal text-gray-500 dark:text-gray-300">Parolalar sansürlü
+                                        gözükür.</p>
+                                </div>
                             </div>
+
                         </div>
                         <div>
-                            <div>
-                                <label for="hidePasswords" class="text-md text-gray-800">Sıralama Tercihi</label>
-                                <select name="sortBy" id="sortBy" class="form-select mb-5">
-                                    <option value="newer">Yeniden eskiye</option>
-                                    <option value="older" selected>Eskiden yeniye</option>
-                                </select>
-                            </div>
+                            <label for="sortBy"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Sıralama
+                                Tercihi</label>
+                            <select name="sortBy" id="sortBy"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-semibold">
+                                <option value="newer">Yeniden eskiye</option>
+                                <option value="older">Eskiden yeniye</option>
+                            </select>
                         </div>
 
                         <div>
                             <div>
-                                <label class="text-md text-gray-800">Yedek</label>
+                                <label for="default-input"
+                                    class="block pt-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yedek</label>
                             </div>
                             <input id="getBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg cursor-pointer"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
                                 value="İndir" type="button">
                             </input>
                             <input id="uploadBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-lg cursor-pointer"
+                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
                                 value="Yükle" type="button"
                                 onclick="event.preventDefault(), $('#uploadBackupDiv').toggle()">
 
@@ -253,7 +294,7 @@
 <script src="js/ui.js"></script>
 <script>
     const url = new URL(document.location.href);
-    url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
+    // url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
     listAll()
     handlePreferences()
 </script>

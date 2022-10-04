@@ -130,11 +130,20 @@ uploadBackup = () => {
     }
 }
 
-listAll = () => {
+// if any key is pressed 
+$('#default-search').on('keyup', function (e) {
     const data = getCookie()
+    const filteredData = data.filter(d => d.platform.toLowerCase().includes(e.target.value.toLowerCase()))
+    console.log('search data', filteredData,);
+    listAll(filteredData, 'search')
+    handlePreferences();
+});
+
+listAll = (data = getCookie(), listType = 'default') => {
     var list = $('#list')
     list.html('')
     if (data.length > 0) {
+        document.getElementById('not-found').style.display = 'none';
         list.removeAttr("style")
         for (let i = 0; i < data.length; i++) {
             raw = `<div class="max-w-sm mx-auto inline-flex">
@@ -202,18 +211,33 @@ listAll = () => {
             list.append(raw)
         }
     } else {
-        list.css('height', '500px')
-        list.css('display', 'grid')
-        list.append(`
-        <ul class="flex flex-wrap flex-col justify-center items-center m-auto subpixel-antialiased">
-        <h1 class="text-3xl mb-3">Bilgilendirme</h1>
-        <li>Parola Depom, verilerinizi deplomak için tarayıcınızın cookie sistemini kullanır.</li>
-        <li>Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama alanıdır.</li>
-        <li class="text-red-600">Cookileri temizlerseniz tüm veriler silinir.</li>
-        <li class="text-red-600">Başka bir tarayıcıda açarsanız verileriniz gözükmez çünkü her tarayıcının cookie sistemi farklıdır.</li>
-        <li class="text-green-600">Yedek sistemiyle verilerinizin yedeğini alıp istediğiniz zaman geri yükleyebilirsiniz.</li>
-      </ul>
-      <p class="text-center mt-6">Bir sorun, istek veya sorunuz olursa bana <a href="https://www.furkankalyoncu.net/contact/" target="_blank" class="text-blue-500">buradan</a> ulaşabilirsiniz.</p>`)
+        if (listType === 'search') {
+            document.getElementById('not-found').style.display = 'block';
+        } else {
+            document.getElementById('search-component').style.display = 'none'
+            list.append(`
+            <div class="m-5 bg-white dark:bg-gray-900">
+            <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">Kullanmaya başlamadan önce lütfen aşağıdaki bilgileri oku:</span>
+                    <ul class="mt-1.5 ml-4 text-blue-700 list-disc list-inside">
+                        <li>Parola Depom, verilerinizi deplomak için tarayıcınızın local storage özelliğini kullanır.</li>
+                        <li>Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama alanıdır.</li>
+                        <li>Sitedeki verileri temizlerseniz tüm eklediğiniz veriler silinir.</li>
+                        <li>Başka bir tarayıcıda açarsanız verileriniz gözükmez çünkü her tarayıcının cookie sistemi farklıdır.</li>
+                        <li>Yedek sistemiyle verilerinizin yedeğini alıp istediğiniz zaman geri yükleyebilirsiniz.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>`);
+        }
     }
     return true
 }
