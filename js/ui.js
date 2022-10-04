@@ -253,3 +253,8 @@ $('html')[0].addEventListener("keyup", function (event) {
         }
     }
 });
+
+$(document).on('click', '#navbar-mobile', function (event) {
+    event.preventDefault()
+    $('#navbar-default').toggle()
+});
