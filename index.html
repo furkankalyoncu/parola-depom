@@ -21,20 +21,58 @@
     </script>
 </head>
 
+
+<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+    <div class="container flex flex-wrap justify-between items-center mx-auto">
+        <a href="https://paroladepom.com" class="flex items-center">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Parola Depom</span>
+        </a>
+        <button data-collapse-toggle="navbar-default" type="button"
+            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Menüyü Aç</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"></path>
+            </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul
+                class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
+                <li>
+                    <a href="/"
+                        class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                        aria-current="page">Ana Sayfa</a>
+                </li>
+                <li>
+                    <!-- <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
+                        id="newButton">Yeni Ekle</a> -->
+                    <button type="button" id="newButton"
+                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Yeni
+                        Ekle</button>
+                </li>
+                <li>
+                    <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
+                        id="preferences" onclick="openModal('main-modal')">Tercihler</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
 <body>
     <div class="justify-items-start md:justify-items-center mt-8 text-center text-5xl">
-        <h1 class="place-self-center" translate="no" style="font-family: 'Open Sans', sans-serif;">Parola Depom</h2>
+        <!-- <h1 class="place-self-center" translate="no" style="font-family: 'Open Sans', sans-serif;">Parola Depom</h2> -->
     </div>
-    <div class="flex justify-end px-48 sm:px-28 lg:px-48">
+    <!-- <div class="flex justify-end px-48 sm:px-28 lg:px-48">
         <button id="newButton"
             class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Yeni
         </button>
-        <button id="preferences" onclick="openModal('main-modal')"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-10 text-lg ml-2">
-            Tercihler
-        </button>
-    </div>
+    </div> -->
 
     <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="newForm">
         <form method="POST" id="form" autocomplete="off">
@@ -294,7 +332,7 @@
 <script src="js/ui.js"></script>
 <script>
     const url = new URL(document.location.href);
-    url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
+    // url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
     listAll()
     handlePreferences()
 </script>

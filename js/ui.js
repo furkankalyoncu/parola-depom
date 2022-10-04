@@ -1,7 +1,7 @@
 $("#newButton").click(function () {
     $('#newForm').first().fadeToggle(200, 'linear');
     $(this).text(function (i, text) {
-        return text === "Kapat" ? "Yeni" : "Kapat";
+        return text === "Kapat" ? "Yeni Ekle" : "Kapat";
     })
 });
 
@@ -195,7 +195,7 @@ $("#getBackup").click(function () {
 });
 
 handlePreferences = () => {
-    if(Cookies.get('paroladepom_preferences') === undefined) {
+    if (Cookies.get('paroladepom_preferences') === undefined) {
         Cookies.set('paroladepom_preferences', '[{"name":"defaultUsername","value":""},{"name":"sortBy","value":"older"}]')
     }
     const preferences = JSON.parse(Cookies.get('paroladepom_preferences'))
