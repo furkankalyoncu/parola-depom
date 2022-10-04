@@ -226,7 +226,7 @@ listAll = (data = getCookie(), listType = 'default') => {
                 </svg>
                 <span class="sr-only">Info</span>
                 <div>
-                    <span class="font-medium">Kullanmaya başlamadan önce lütfen aşağıdaki bilgileri oku:</span>
+                    <span class="font-medium">Kullanmaya başlamadan önce lütfen aşağıdaki bilgileri okuyun</span>
                     <ul class="mt-1.5 ml-4 text-blue-700 list-disc list-inside">
                         <li>Parola Depom, verilerinizi deplomak için tarayıcınızın local storage özelliğini kullanır.</li>
                         <li>Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama alanıdır.</li>
