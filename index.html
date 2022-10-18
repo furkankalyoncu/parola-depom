@@ -19,6 +19,7 @@
 
         gtag('config', 'G-7ME6PNFBV7');
     </script>
+    <script async src="https://cdn.splitbee.io/sb.js"></script>
 </head>
 
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -100,7 +101,7 @@
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <button
                         class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                        id="new" type="submit">Ekle</button>
+                        id="new" type="submit" data-splitbee-event="Added New Data">Ekle</button>
                 </div>
             </div>
         </form>
@@ -158,10 +159,10 @@
                 <div class="grid grid-cols-1 mt-5 mx-7">
                     <button
                         class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                        id="editSave" type="submit">Kaydet</button>
+                        id="editSave" type="submit" data-splitbee-event="Edited Data">Kaydet</button>
                     <button
                         class="px-4 py-2 text-base text-red-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 mt-2"
-                        id="editCancel" type="button">İptal</button>
+                        id="editCancel" type="button" data-splitbee-event="Cancel Edited Data">İptal</button>
                 </div>
             </div>
         </form>
@@ -255,7 +256,7 @@
                             </div>
                             <input id="getBackup"
                                 class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
-                                value="İndir" type="button">
+                                value="İndir" type="button" data-splitbee-event="Clicked Download Backup">
                             </input>
                             <input id="uploadBackup"
                                 class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
@@ -273,7 +274,7 @@
                                     onclick="document.getElementById('realUploadBackup').click()" autocomplete="off"
                                     name="uploadBackupInput"
                                     class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold cursor-pointer"
-                                    value="Dosya Seç">
+                                    value="Dosya Seç" data-splitbee-event="Uploaded Backup">
                             </div>
                         </div>
 
@@ -283,10 +284,10 @@
                 <div class="flex justify-end pt-2">
                     <button
                         class="bg-blue-500 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-md cursor-pointer mr-2"
-                        onclick="savePreferences(document.getElementById('preferencesForm'))">Kaydet</button>
+                        onclick="savePreferences(document.getElementById('preferencesForm'))" data-splitbee-event="Saved Preferences">Kaydet</button>
                     <button
                         class="bg-red-500 hover:bg-red-500 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-md cursor-pointer"
-                        onclick="modalClose('main-modal')">Kapat</button>
+                        onclick="modalClose('main-modal')" data-splitbee-event="Closed Preferences">Kapat</button>
                 </div>
             </div>
         </div>
@@ -298,10 +299,10 @@
         <ul class="flex items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
             <li>
                 <a href="https://furkan.dev" target="_blank"
-                    class="mr-4 hover:underline md:mr-6 font-semibold">furkan.dev</a>
+                    class="mr-4 hover:underline md:mr-6 font-semibold" data-splitbee-event="Clicked Author Link">furkan.dev</a>
             </li>
             <li>
-                <a href="https://github.com/furkankalyoncu/parola-depom" target="_blank" class="mr-4 md:mr-6">Github</a>
+                <a href="https://github.com/furkankalyoncu/parola-depom" target="_blank" class="mr-4 md:mr-6" data-splitbee-event="Clicked Github">Github</a>
             </li>
         </ul>
     </footer>
