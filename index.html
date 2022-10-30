@@ -1,324 +1,708 @@
 <!DOCTYPE html>
 <html lang="tr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/index.css">
-    <meta name="description" content="Tarayıcı tabanlı parola depolama.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/index.css" />
+    <meta name="description" content="Tarayıcı tabanlı parola depolama." />
     <title>Parola Depom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ME6PNFBV7"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7ME6PNFBV7"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', 'G-7ME6PNFBV7');
+      gtag("config", "G-7ME6PNFBV7");
     </script>
     <script async src="https://cdn.splitbee.io/sb.js"></script>
-</head>
+  </head>
 
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+  <nav
+    class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900"
+  >
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="https://paroladepom.com" class="flex items-center">
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Parola Depom</span>
-        </a>
-        <button data-collapse-toggle="navbar-default" type="button" id="navbar-mobile"
-            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-default" aria-expanded="false">
-            <span class="sr-only">Menüyü Aç</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"></path>
-            </svg>
-        </button>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul
-                class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
-                <!-- <li>
-                    <a href="/"
-                        class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                        aria-current="page">Ana Sayfa</a>
-                </li> -->
-                <li>
-                    <!-- <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
-                        id="newButton">Yeni Ekle</a> -->
-                    <button type="button" id="newButton"
-                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Yeni
-                        Ekle</button>
-                </li>
-                <li>
-                    <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
-                        id="preferences" onclick="openModal('main-modal')">Tercihler</a>
-                </li>
-            </ul>
-        </div>
+      <a
+        href="https://paroladepom.com"
+        class="flex items-center"
+        data-splitbee-event="Clicked Logo"
+      >
+        <span
+          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+          >Parola Depom</span
+        >
+      </a>
+      <button
+        data-collapse-toggle="navbar-default"
+        type="button"
+        id="navbar-mobile"
+        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-default"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Menüyü Aç</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul
+          class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center"
+        >
+          <li>
+            <button
+              type="button"
+              id="newButton"
+              class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center"
+              data-splitbee-event="Clicked New Data"
+            >
+              Yeni Ekle
+            </button>
+          </li>
+          <li>
+            <span
+              class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
+              id="preferences"
+              onclick="event.preventDefault(); openModal('main-modal');"
+              data-splitbee-event="Clicked Preferences"
+              >Tercihler</span
+            >
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<body>
-    <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="newForm">
-        <form method="POST" id="form" autocomplete="off">
-            <div class="text-center space-y-2 sm:text-left">
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Platform
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="platform" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        URL
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="url" placeholder="opsiyonel" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Kullanıcı Adı
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="username" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Parola
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="password" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <button
-                        class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                        id="new" type="submit" data-splitbee-event="Added New Data">Ekle</button>
-                </div>
-            </div>
-        </form>
+  <body>
+    <div
+      class="flex justify-center m-5 bg-white dark:bg-gray-900 py-32 hidden"
+      id="landing"
+    >
+      <div
+        class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="flex-shrink-0 inline w-5 h-5 mr-3"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <span class="sr-only">Info</span>
+        <div>
+          <span class="font-medium"
+            >Kullanmaya başlamadan önce lütfen aşağıdaki bilgileri okuyun</span
+          >
+          <ul class="mt-1.5 ml-4 text-blue-700 list-disc list-inside">
+            <li>
+              Parola Depom, verilerinizi deplomak için tarayıcınızın local
+              storage özelliğini kullanır.
+            </li>
+            <li>
+              Kayıtlar veritabanında tutulmadığı için daha güvenli bir saklama
+              alanıdır.
+            </li>
+            <li>
+              Sitedeki verileri temizlerseniz tüm eklediğiniz veriler silinir.
+            </li>
+            <li>
+              Başka bir tarayıcıda açarsanız verileriniz gözükmez çünkü her
+              tarayıcının local storage sistemi farklıdır.
+            </li>
+            <li>Veri kaybı yaşamamak için tercihlerden yedek alabilirsiniz.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden"
+      id="newForm"
+    >
+      <form method="POST" id="form" autocomplete="off">
+        <div class="text-center space-y-2 sm:text-left">
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Platform</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="platform"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">URL</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="url"
+              placeholder="opsiyonel"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Kullanıcı Adı</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="username"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Parola</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="password"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <button
+              class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              id="new"
+              type="submit"
+              data-splitbee-event="Added New Data"
+            >
+              Ekle
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
 
-    <div class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden" id="editForm">
-        <div class="grid grid-cols-1 text-center text-2xl justify-items-end cursor-pointer" id="closeEdit">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </div>
+    <div
+      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden"
+      id="editForm"
+    >
+      <div
+        class="grid grid-cols-1 text-center text-2xl justify-items-end cursor-pointer"
+        id="closeEdit"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
 
-        <div class="grid grid-cols-1 mt-5 mx-7 text-center text-2xl font-bold">
-            <h2 id="title">Düzenle</h2>
+      <div class="grid grid-cols-1 mt-5 mx-7 text-center text-2xl font-bold">
+        <h2 id="title">Düzenle</h2>
+      </div>
+      <div class="grid grid-cols-1 mt-5 mx-7 text-center text-xl">
+        <h2 id="editTitle">Düzenle</h2>
+      </div>
+      <form id="editFormForm" autocomplete="off">
+        <div class="text-center space-y-2 sm:text-left">
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Platform</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="editPlatform"
+              id="editPlatform"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">URL</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="editURL"
+              id="editURL"
+              placeholder="opsiyonel"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Kullanıcı Adı</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="editUsername"
+              id="editUsername"
+            />
+          </div>
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <p class="text-lg text-black font-semibold">Parola</p>
+            <input
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              type="text"
+              name="editPassword"
+              id="editPassword"
+            />
+          </div>
+          <input type="hidden" name="editId" id="editId" />
+          <div class="grid grid-cols-1 mt-5 mx-7">
+            <button
+              class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              id="editSave"
+              type="submit"
+              data-splitbee-event="Edited Data"
+            >
+              Kaydet
+            </button>
+            <button
+              class="px-4 py-2 text-base text-red-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 mt-2"
+              id="editCancel"
+              type="button"
+              data-splitbee-event="Cancel Edited Data"
+            >
+              İptal
+            </button>
+          </div>
         </div>
-        <div class="grid grid-cols-1 mt-5 mx-7 text-center text-xl">
-            <h2 id="editTitle">Düzenle</h2>
-        </div>
-        <form method="POST" id="editFormForm" autocomplete="off">
-            <div class="text-center space-y-2 sm:text-left">
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Platform
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="editPlatform" id="editPlatform" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        URL
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="editURL" id="editURL" placeholder="opsiyonel" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Kullanıcı Adı
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="editUsername" id="editUsername" />
-                </div>
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <p class="text-lg text-black font-semibold">
-                        Parola
-                    </p>
-                    <input
-                        class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                        type="text" name="editPassword" id="editPassword" />
-                </div>
-                <input type="hidden" name="editId" id="editId">
-                <div class="grid grid-cols-1 mt-5 mx-7">
-                    <button
-                        class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-                        id="editSave" type="submit" data-splitbee-event="Edited Data">Kaydet</button>
-                    <button
-                        class="px-4 py-2 text-base text-red-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-red-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 mt-2"
-                        id="editCancel" type="button" data-splitbee-event="Cancel Edited Data">İptal</button>
-                </div>
-            </div>
-        </form>
+      </form>
     </div>
 
-    <div class="container mx-auto pt-6 lg:pr-80 lg:pl-80 md:pl-32 md:pr-32 pr-20 pl-20" id="search-component">
-        <label for="default-search"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Ara</label>
-        <div class="relative">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+    <main class="flex flex-col h-screen">
+      <div class="flex flex-1 overflow-hidden container mx-auto">
+        <div
+          class="flex bg-white-100 p-3 overflow-y-auto flex-col scrollbar max-w-[320px]"
+          id="list-sidebar"
+        >
+          <div
+            class="flex items-center sticky top-0 pb-2 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700"
+          >
+            <label for="default-search" class="sr-only">Ara...</label>
+            <div class="relative w-full">
+              <div
+                class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
                 </svg>
+              </div>
+              <input
+                type="text"
+                id="default-search"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Ara..."
+                autocomplete="off"
+                onclick="this.select();"
+              />
             </div>
-            <input type="search" id="default-search"
-                class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Bir başlık ara..." autocomplete="off" onclick="this.select();">
-            <!-- <button type="submit"
-                    class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> -->
+          </div>
+
+          <ul class="flex flex-col-reverse w-full" id="sidebar-content"></ul>
         </div>
 
-        <p class="text-center text-md font-bold pt-6 hidden" id="not-found">Sonuç bulunamadı.</p>
-    </div>
-    <div class="max-w-4xl ml-auto mr-auto pt-6" id="list">
+        <div class="flex flex-1 flex-col hidden" id="selected-card">
+          <!-- <div class="flex bg-white-100 h-14 p-4">Header</div> -->
+          <div
+            class="flex flex-1 overflow-y-auto paragraph px-4 justify-center items-center pb-32"
+            id="data-content"
+          >
+            <div
+              class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+            >
+              <div class="space-y-6">
+                <h5
+                  class="text-xl font-medium text-gray-900 dark:text-white"
+                  id="selected-title"
+                >
+                  Başlık
+                </h5>
 
-    </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Kullanıcı Adı</label
+                  >
+                  <div class="relative">
+                    <!-- <input
+                      type="text"
+                      id="selected-username"
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled
+                    /> -->
+                    <a
+                      id="selected-username"
+                      class="font-normal text-gray-700 dark:text-gray-400"
+                    ></a>
+
+                    <button
+                      type="submit"
+                      class="absolute right-2.5"
+                      onclick="copy(this)"
+                      data-splitbee-event="Copied Username"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 inline-block cursor-pointer"
+                        fill="none"
+                        viewBox="0 -2 28 28"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Parola</label
+                  >
+                  <div class="relative">
+                    <a
+                      id="selected-password"
+                      name="selected-password"
+                      target="_blank"
+                      class="font-normal text-gray-700 dark:text-gray-400"
+                    ></a>
+                    <button
+                      type="submit"
+                      class="absolute right-2.5"
+                      onclick="copy(this)"
+                      data-splitbee-event="Copied Password"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 inline-block cursor-pointer"
+                        fill="none"
+                        viewBox="0 -2 28 28"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div id="selected-url-section" class="hidden">
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >URL</label
+                  >
+                  <div class="relative">
+                    <a
+                      id="selected-url"
+                      class="font-normal text-gray-700 dark:text-gray-400"
+                    ></a>
+                    <button
+                      type="submit"
+                      class="absolute right-2.5 bottom-8"
+                      onclick="copy(this)"
+                      data-splitbee-event="Copied URL"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 inline-block cursor-pointer"
+                        fill="none"
+                        viewBox="0 -2 28 28"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <hr class="my-8 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+
+                <div class="flex justify-center rounded-md shadow-sm">
+                  <button
+                    type="button"
+                    class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    data-splitbee-event="Clicked Share"
+                  >
+                    Paylaş
+                  </button>
+                  <button
+                    type="button"
+                    id="edit"
+                    class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    data-splitbee-event="Clicked Edit"
+                  >
+                    Düzenle
+                  </button>
+                  <button
+                    type="button"
+                    id="delete"
+                    class="py-2 px-4 text-sm font-medium text-red-500 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    data-splitbee-event="Clicked Delete"
+                  >
+                    Sil
+                  </button>
+                  <button
+                    type="button"
+                    class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    onclick="$('#selected-card').fadeOut(100); $('input:radio[name=sidebar-select]').prop('checked', false);"
+                    data-splitbee-event="Clicked Close"
+                  >
+                    Kapat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <!-- modal -->
-    <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn hidden"
-        style="background: rgba(0,0,0,.7);" id="modal">
-        <div
-            class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
-            <div class="modal-content py-4 text-left px-6">
-                <!--Title-->
-                <div class="flex justify-between items-center pb-3">
-                    <p class="text-2xl font-bold text-black-500">Tercihler</p>
-                    <div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
-                        <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18"
-                            height="18" viewBox="0 0 18 18">
-                            <path
-                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                            </path>
-                        </svg>
-                    </div>
-                </div>
-                <!--Body-->
-                <div class="my-5 mr-5 ml-5 flex justify-center">
-                    <form id="preferencesForm" class="w-full" onkeydown="return event.key != 'Enter';">
-                        <div class="mb-6">
-                            <label for="default-input"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
-                                Kullanıcı Adı</label>
-                            <input type="text" id="defaultUsername" autocomplete="off" name="defaultUsername"
-                                placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz."
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        </div>
-                        <div>
-                            <div class="flex pb-3">
-                                <div class="flex items-center h-5">
-                                    <input id="hidePasswords" autocomplete="off" name="hidePasswords"
-                                        aria-describedby="hidePasswords-text" type="checkbox" value=""
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="ml-2 text-sm">
-                                    <label for="hidePasswords"
-                                        class="font-medium text-gray-900 dark:text-gray-300">Parolaları Gizle</label>
-                                    <p id="hidePasswords-text"
-                                        class="text-xs font-normal text-gray-500 dark:text-gray-300">Parolalar sansürlü
-                                        gözükür.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div>
-                            <label for="sortBy"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Sıralama
-                                Tercihi</label>
-                            <select name="sortBy" id="sortBy"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-semibold">
-                                <option value="newer">Yeniden eskiye</option>
-                                <option value="older">Eskiden yeniye</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <div>
-                                <label for="default-input"
-                                    class="block pt-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yedek</label>
-                            </div>
-                            <input id="getBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
-                                value="İndir" type="button" data-splitbee-event="Clicked Download Backup">
-                            </input>
-                            <input id="uploadBackup"
-                                class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
-                                value="Yükle" type="button"
-                                onclick="event.preventDefault(), $('#uploadBackupDiv').toggle()">
-
-                            </input>
-                        </div>
-                        <div class="mt-5 hidden" id="uploadBackupDiv">
-                            <div>
-                                <label for="uploadBackupInput" class="text-md text-gray-800">Yedek Yükle</label>
-                            </div>
-                            <div>
-                                <input type="button" id="uploadBackupInput"
-                                    onclick="document.getElementById('realUploadBackup').click()" autocomplete="off"
-                                    name="uploadBackupInput"
-                                    class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold cursor-pointer"
-                                    value="Dosya Seç" data-splitbee-event="Uploaded Backup">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-                <!--Footer-->
-                <div class="flex justify-end pt-2">
-                    <button
-                        class="bg-blue-500 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-md cursor-pointer mr-2"
-                        onclick="savePreferences(document.getElementById('preferencesForm'))" data-splitbee-event="Saved Preferences">Kaydet</button>
-                    <button
-                        class="bg-red-500 hover:bg-red-500 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-md cursor-pointer"
-                        onclick="modalClose('main-modal')" data-splitbee-event="Closed Preferences">Kapat</button>
-                </div>
+    <div
+      class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn hidden"
+      style="background: rgba(0, 0, 0, 0.7)"
+      id="modal"
+    >
+      <div
+        class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto"
+      >
+        <div class="modal-content py-4 text-left px-6">
+          <!--Title-->
+          <div class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold text-black-500">Tercihler</p>
+            <div
+              class="modal-close cursor-pointer z-50"
+              onclick="modalClose('main-modal')"
+            >
+              <svg
+                class="fill-current text-gray-500"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+              >
+                <path
+                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                ></path>
+              </svg>
             </div>
+          </div>
+          <!--Body-->
+          <div class="my-5 mr-5 ml-5 flex justify-center">
+            <form
+              id="preferencesForm"
+              class="w-full"
+              onkeydown="return event.key != 'Enter';"
+            >
+              <div class="mb-6">
+                <label
+                  for="default-input"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Default Kullanıcı Adı</label
+                >
+                <input
+                  type="text"
+                  id="defaultUsername"
+                  autocomplete="off"
+                  name="defaultUsername"
+                  placeholder="Kayıt eklerken kullanıcı adı girmeye gerek kalmaz."
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <div class="flex pb-3">
+                  <div class="flex items-center h-5">
+                    <input
+                      id="hidePasswords"
+                      autocomplete="off"
+                      name="hidePasswords"
+                      aria-describedby="hidePasswords-text"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                  </div>
+                  <div class="ml-2 text-sm">
+                    <label
+                      for="hidePasswords"
+                      class="font-medium text-gray-900 dark:text-gray-300"
+                      >Parolaları Gizle</label
+                    >
+                    <p
+                      id="hidePasswords-text"
+                      class="text-xs font-normal text-gray-500 dark:text-gray-300"
+                    >
+                      Parolalar sansürlü gözükür.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label
+                  for="sortBy"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                  >Sıralama Tercihi</label
+                >
+                <select
+                  name="sortBy"
+                  id="sortBy"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-semibold"
+                >
+                  <option value="newer">Yeniden eskiye</option>
+                  <option value="older">Eskiden yeniye</option>
+                </select>
+              </div>
+
+              <div>
+                <div>
+                  <label
+                    for="default-input"
+                    class="block pt-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Yedek</label
+                  >
+                </div>
+                <input
+                  id="getBackup"
+                  class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
+                  value="İndir"
+                  type="button"
+                  data-splitbee-event="Clicked Download Backup"
+                />
+                <input
+                  id="uploadBackup"
+                  class="bg-purple-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded mt-2 text-md cursor-pointer"
+                  value="Yükle"
+                  type="button"
+                  onclick="event.preventDefault(), $('#uploadBackupDiv').toggle()"
+                />
+              </div>
+              <div class="mt-5 hidden" id="uploadBackupDiv">
+                <div>
+                  <label for="uploadBackupInput" class="text-md text-gray-800"
+                    >Yedek Yükle</label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="button"
+                    id="uploadBackupInput"
+                    onclick="document.getElementById('realUploadBackup').click()"
+                    autocomplete="off"
+                    name="uploadBackupInput"
+                    class="p-2 w-full border-2 bg-purple-600 text-white mb-5 rounded-md font-bold cursor-pointer"
+                    value="Dosya Seç"
+                    data-splitbee-event="Uploaded Backup"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--Footer-->
+          <div class="flex justify-end pt-2">
+            <button
+              class="bg-blue-500 hover:bg-indigo-500 text-white font-bold py-2 px-4 hover:border-blue-500 rounded text-md cursor-pointer mr-2"
+              onclick="savePreferences(document.getElementById('preferencesForm'))"
+              data-splitbee-event="Saved Preferences"
+            >
+              Kaydet
+            </button>
+            <button
+              class="bg-red-500 hover:bg-red-500 text-white font-bold py-2 px-4 hover:border-red-500 rounded text-md cursor-pointer"
+              onclick="modalClose('main-modal')"
+              data-splitbee-event="Closed Preferences"
+            >
+              Kapat
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <input type="file" onchange="uploadBackup()" class="invisible" id="realUploadBackup">
+    <input
+      type="file"
+      onchange="uploadBackup()"
+      class="invisible"
+      id="realUploadBackup"
+    />
 
-    <footer class="p-4 bg-white rounded-lg shadow flex justify-center md:items-center md:p-6 dark:bg-gray-800">
-        <ul class="flex items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-            <li>
-                <a href="https://furkan.dev" target="_blank"
-                    class="mr-4 hover:underline md:mr-6 font-semibold" data-splitbee-event="Clicked Author Link">furkan.dev</a>
-            </li>
-            <li>
-                <a href="https://github.com/furkankalyoncu/parola-depom" target="_blank" class="mr-4 md:mr-6" data-splitbee-event="Clicked Github">Github</a>
-            </li>
-        </ul>
+    <footer
+      class="p-4 bg-white rounded-lg shadow flex justify-center md:items-center md:p-6 dark:bg-gray-800"
+    >
+      <ul
+        class="flex items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0"
+      >
+        <li>
+          <a
+            href="https://furkan.dev"
+            target="_blank"
+            class="mr-4 hover:underline md:mr-6 font-semibold"
+            data-splitbee-event="Clicked Author Link"
+            >furkan.dev</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/furkankalyoncu/parola-depom"
+            target="_blank"
+            class="mr-4 md:mr-6"
+            data-splitbee-event="Clicked Github"
+            >Github</a
+          >
+        </li>
+      </ul>
     </footer>
+  </body>
 
-</body>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="js/FileSaver.js"></script>
-<script src="js/core.js"></script>
-<script src="js/ui.js"></script>
-<script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="js/FileSaver.js?v=1.0"></script>
+  <script src="js/core.js?v=1.0"></script>
+  <script src="js/ui.js?v=1.0"></script>
+  <script>
     const url = new URL(document.location.href);
     url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
-    listAll()
-    handlePreferences()
-</script>
-
+    landing();
+    listSidebar();
+    handlePreferences();
+  </script>
 </html>
