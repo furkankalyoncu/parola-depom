@@ -156,6 +156,7 @@ selectData = (id) => {
 
 function listSidebar(data = getCookie()) {
   const sidebar = $("#sidebar-content");
+  landing();
   sidebar.html("");
   if (data.length > 0) {
     for (let i = 0; i < data.length; i++) {
@@ -205,8 +206,10 @@ function landing() {
   const sidebar = document.getElementById("list-sidebar");
   const data = getCookie();
   if (data.length === 0) {
-    // remove hidden class
     landing.classList.remove("hidden");
     sidebar.classList.add("hidden");
+  } else {
+    landing.classList.add("hidden");
+    sidebar.classList.remove("hidden");
   }
 }
