@@ -239,8 +239,9 @@ $(document).on("click", "input[name=sidebar-select]", function (event) {
 function copy(t) {
   const element = $(t).parent().parent().find("a");
   const elementName = element[0].name;
+  const elementId = element[0].id;
   let value = element.text();
-  if (+elementName) {
+  if (elementId === 'selected-password') {
     value = findById(elementName).password;
   }
   navigator.clipboard.writeText(value).then(
