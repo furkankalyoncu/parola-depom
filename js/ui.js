@@ -215,24 +215,41 @@ $(document).on("click", "#navbar-mobile", function (event) {
 });
 
 $(document).on("click", "input[name=sidebar-select]", function (event) {
+  saveClick(event.target.id);
   const data = findById(event.target.id);
+  const { platform, name, password, url, id } = data;
+
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
+
+  emailRegex.test(name)
+    ? $("#username-label").html("E-posta")
+    : $("#username-label").html("Kullanıcı Adı");
+
+  ipRegex.test(url)
+    ? $("#url-label").html("IP Adresi")
+    : $("#url-label").html("URL");
+
   $("#selected-card").removeClass("hidden");
   $("#selected-card").fadeIn(100);
-  $("#selected-title").html(data.platform);
-  $("#selected-username").html(data.name);
-  $("#selected-password").html(data.password);
-  $("#selected-password").attr("name", data.id);
-  $("#edit").attr("name", data.id);
-  $("#delete").attr("name", data.id);
-  if (data.url) {
+  $("#selected-title").html(platform);
+  $("#selected-username").html(name);
+  $("#selected-password").html(password);
+  $("#selected-password").attr("name", id);
+  $("#share-button").attr("name", id);
+  $("#edit").attr("name", id);
+  $("#delete").attr("name", id);
+
+  if (url) {
     $("#selected-url-section").removeClass("hidden");
-    $("#selected-url").html(data.url);
-    $("#selected-url").attr("href", data.url);
+    $("#selected-url").html(url);
+    $("#selected-url").attr("href", url);
     $("#selected-url").attr("target", "_blank");
     $("#selected-url").attr("rel", "noopener noreferrer nofollow");
   } else {
     $("#selected-url-section").addClass("hidden");
   }
+
   handlePreferences();
 });
 
@@ -241,7 +258,7 @@ function copy(t) {
   const elementName = element[0].name;
   const elementId = element[0].id;
   let value = element.text();
-  if (elementId === 'selected-password') {
+  if (elementId === "selected-password") {
     value = findById(elementName).password;
   }
   navigator.clipboard.writeText(value).then(
@@ -266,6 +283,44 @@ function copy(t) {
     }
   );
 }
+
+$(document).on("click", "#share-button", function (event) {
+  event.preventDefault();
+  const data = findById(event.target.name);
+  const { name, password, url, id } = data;
+  const dummy = document.createElement("textarea");
+  document.body.appendChild(dummy);
+
+  dummy.setAttribute("id", "dummy_id");
+  dummy.setAttribute("contenteditable", "");
+  dummy.innerHTML = `${url != "" && url != undefined ? `${url}\n` : ""}${
+    name != "" ? `${name}\n` : ""
+  }${password != "" ? `${password}` : ""}`;
+
+  navigator.clipboard.writeText(dummy.innerHTML).then(
+    function () {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      Toast.fire({
+        type: "success",
+        title: "Tüm bilgiler kopyalandı!",
+      });
+    },
+    function (err) {
+      Toast.fire({
+        type: "error",
+        title: "Kopyalanamadı!",
+      });
+      console.error("Async: Could not copy text: ", err);
+    }
+  );
+
+  document.body.removeChild(dummy);
+});
 
 hideCard = () => {
   $("#selected-card").fadeOut(100);

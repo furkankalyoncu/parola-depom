@@ -324,7 +324,9 @@
             </div>
           </div>
 
-          <ul class="flex flex-col-reverse w-full" id="sidebar-content"></ul>
+          <ul class="flex flex-col-reverse w-full" id="sidebar-content">
+            
+          </ul>
         </div>
 
         <div class="flex flex-1 flex-col hidden" id="selected-card">
@@ -346,8 +348,9 @@
 
                 <div>
                   <label
-                    for="email"
+                    for="username"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    id="username-label"
                     >Kullanıcı Adı</label
                   >
                   <div class="relative">
@@ -423,14 +426,15 @@
                 </div>
                 <div id="selected-url-section" class="hidden">
                   <label
-                    for="email"
+                    for="url-label"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    id="url-label"
                     >URL</label
                   >
                   <div class="relative">
                     <a
                       id="selected-url"
-                      class="font-normal text-gray-700 dark:text-gray-400"
+                      class="font-normal text-blue-600 dark:text-blue-400"
                     ></a>
                     <button
                       type="submit"
@@ -458,11 +462,13 @@
 
                 <hr class="my-8 h-px bg-gray-200 border-0 dark:bg-gray-700" />
 
-                <div class="flex justify-center rounded-md shadow-sm">
+                <div class="flex justify-center rounded-md">
                   <button
                     type="button"
                     class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                     data-splitbee-event="Clicked Share"
+                    id="share-button"
+                    name=""
                   >
                     Paylaş
                   </button>
@@ -694,14 +700,14 @@
     </footer>
   </body>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="js/FileSaver.js?v=1.0"></script>
-  <script src="js/core.js?v=1.0"></script>
-  <script src="js/ui.js?v=1.0"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/core.js?v=1.2"></script>
+  <script src="js/ui.js?v=1.2"></script>
   <script>
     const url = new URL(document.location.href);
-    url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
+    // url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
     landing();
     listSidebar();
     handlePreferences();
