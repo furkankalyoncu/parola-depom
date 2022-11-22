@@ -91,7 +91,7 @@
     </div>
   </nav>
 
-  <body>
+  <body class="dark:bg-gray-900">
     <div
       class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden"
       id="newForm"
@@ -324,9 +324,7 @@
             </div>
           </div>
 
-          <ul class="flex flex-col-reverse w-full" id="sidebar-content">
-            
-          </ul>
+          <ul class="flex flex-col-reverse w-full" id="sidebar-content"></ul>
         </div>
 
         <div class="flex flex-1 flex-col hidden" id="selected-card">
@@ -366,7 +364,7 @@
 
                     <button
                       type="submit"
-                      class="absolute right-2.5"
+                      class="absolute right-2.5 dark:invert"
                       onclick="copy(this)"
                       data-splitbee-event="Copied Username"
                     >
@@ -403,7 +401,7 @@
                     ></a>
                     <button
                       type="submit"
-                      class="absolute right-2.5"
+                      class="absolute right-2.5 dark:invert"
                       onclick="copy(this)"
                       data-splitbee-event="Copied Password"
                     >
@@ -438,7 +436,7 @@
                     ></a>
                     <button
                       type="submit"
-                      class="absolute right-2.5 bottom-8"
+                      class="absolute right-2.5 bottom-8 dark:invert"
                       onclick="copy(this)"
                       data-splitbee-event="Copied URL"
                     >
@@ -511,28 +509,35 @@
       id="modal"
     >
       <div
-        class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto"
+        class="shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto"
       >
-        <div class="modal-content py-4 text-left px-6">
+        <div
+          class="modal-content py-4 text-left px-6 dark:bg-gray-800 dark:border-gray-700"
+        >
           <!--Title-->
           <div class="flex justify-between items-center pb-3">
-            <p class="text-2xl font-bold text-black-500">Tercihler</p>
-            <div
-              class="modal-close cursor-pointer z-50"
+            <p class="text-2xl font-bold pl-4 text-black-500 dark:text-gray-300">
+              Tercihler
+            </p>
+
+            <button
+              type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
               onclick="modalClose('main-modal')"
             >
               <svg
-                class="fill-current text-gray-500"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
               >
                 <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
-            </div>
+            </button>
           </div>
           <!--Body-->
           <div class="my-5 mr-5 ml-5 flex justify-center">
