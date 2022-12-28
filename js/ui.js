@@ -184,6 +184,9 @@ handlePreferences = () => {
   if (hidePasswords) {
     $("a[id=selected-password]").text("••••••••••");
     $("#hidePasswords").prop("checked", true);
+    $("a[id=selected-password]").attr("data-hide", "true");
+  } else {
+    $("a[id=selected-password]").attr("data-hide", "false");
   }
 };
 
@@ -198,6 +201,42 @@ openModal = (modal) => {
   $(modalToOpen).attr("name", "opened");
   $(modalToOpen).first().fadeToggle(50).css("display", "flex");
 };
+
+hideCard = () => {
+  $("#selected-card").fadeOut(100);
+  $("#selected-card").addClass("hidden");
+};
+
+function copy(t) {
+  const element = $(t).parent().parent().find("a");
+  const elementName = element[0].name;
+  const elementId = element[0].id;
+  let value = element.text();
+  if (elementId === "selected-password") {
+    value = findById(elementName).password;
+  }
+  navigator.clipboard.writeText(value).then(
+    function () {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      Toast.fire({
+        type: "success",
+        title: "Kopyalandı",
+      });
+    },
+    function (err) {
+      Toast.fire({
+        type: "error",
+        title: "Kopyalanamadı!",
+      });
+      console.error("Async: Could not copy text: ", err);
+    }
+  );
+}
 
 $("html")[0].addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
@@ -253,37 +292,6 @@ $(document).on("click", "input[name=sidebar-select]", function (event) {
   handlePreferences();
 });
 
-function copy(t) {
-  const element = $(t).parent().parent().find("a");
-  const elementName = element[0].name;
-  const elementId = element[0].id;
-  let value = element.text();
-  if (elementId === "selected-password") {
-    value = findById(elementName).password;
-  }
-  navigator.clipboard.writeText(value).then(
-    function () {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-      Toast.fire({
-        type: "success",
-        title: "Kopyalandı",
-      });
-    },
-    function (err) {
-      Toast.fire({
-        type: "error",
-        title: "Kopyalanamadı!",
-      });
-      console.error("Async: Could not copy text: ", err);
-    }
-  );
-}
-
 $(document).on("click", "#share-button", function (event) {
   event.preventDefault();
   const data = findById(event.target.name);
@@ -322,7 +330,16 @@ $(document).on("click", "#share-button", function (event) {
   document.body.removeChild(dummy);
 });
 
-hideCard = () => {
-  $("#selected-card").fadeOut(100);
-  $("#selected-card").addClass("hidden");
-};
+$(document).on("click", "#show-selected-password", function (event) {
+  event.preventDefault();
+  const password = document.getElementById("selected-password");
+  const hideAttr = password.getAttribute("data-hide");
+
+  if (hideAttr === "true") {
+    $("a[id=selected-password]").attr("data-hide", "false");
+    password.innerHTML = findById(password.name).password;
+  } else {
+    $("a[id=selected-password]").attr("data-hide", "true");
+    password.innerHTML = "••••••••••";
+  }
+});

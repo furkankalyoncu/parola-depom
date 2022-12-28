@@ -1,19 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
 
 .scrollbar::-webkit-scrollbar {
-  width: 10px;
+  display: block;
   height: 10px;
+  width: 6px;
+  right: 0px;
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1) scale(0)
+    translateZ(0px) translateZ(-2px);
+    background-color: #bcc0c4;
 }
 
 .scrollbar::-webkit-scrollbar-track {
   border-radius: 100vh;
-  background: #ffffff;
+  background-color: #e6e7e8;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
   background: #7f7d7d;
   border-radius: 100vh;
-  border: 3px solid #f6f7ed;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
