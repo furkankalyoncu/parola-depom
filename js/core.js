@@ -55,6 +55,16 @@ deleteCookie = (id, name = "paroladepom") => {
           1
         );
         localStorage.setItem(name, JSON.stringify(currentCookies));
+        const lastClicks = localStorage
+          .getItem("paroladepom_lastClicks")
+          .split(" ");
+        console.log("lastClicks", lastClicks);
+        console.log("lastClicks includes", lastClicks.includes(id));
+        if (lastClicks.includes(id)) {
+          const newClicks = lastClicks.filter((x) => x != id);
+          localStorage.setItem("paroladepom_lastClicks", newClicks.join(" "));
+        }
+
         listSidebar();
         handlePreferences();
         hideCard();
@@ -293,13 +303,12 @@ function saveClick(id) {
   }
 
   const clicks = localStorage.getItem("paroladepom_lastClicks");
-  const checkData = data.filter((d) => d.id === id);
+  const checkData = data.filter((d) => d.id == id);
 
-  if (checkData) {
+  if (checkData.length > 0) {
     var updatedClicks = `${id} ${clicks}`;
+    localStorage.setItem("paroladepom_lastClicks", updatedClicks);
   }
-
-  localStorage.setItem("paroladepom_lastClicks", updatedClicks);
 }
 
 function mostClicksData() {

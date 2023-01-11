@@ -93,47 +93,53 @@
 
   <body class="dark:bg-gray-900">
     <div
-      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden"
+      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 dark:bg-gray-800 dark:border-gray-700 hidden"
       id="newForm"
     >
       <form method="POST" id="form" autocomplete="off">
         <div class="text-center space-y-2 sm:text-left">
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Platform</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Platform
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="platform"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">URL</p>
+            <p class="text-lg text-black font-semibold dark:text-white">URL</p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="url"
               placeholder="opsiyonel"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Kullanıcı Adı</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Kullanıcı Adı
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="username"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Parola</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Parola
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="password"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
             <button
-              class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              class="px-4 py-2 text-base text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
               id="new"
               type="submit"
               data-splitbee-event="Added New Data"
@@ -194,11 +200,11 @@
     </div>
 
     <div
-      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 hidden"
+      class="py-8 mt-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 dark:bg-gray-800 dark:border-gray-700 hidden"
       id="editForm"
     >
       <div
-        class="grid grid-cols-1 text-center text-2xl justify-items-end cursor-pointer"
+        class="grid grid-cols-1 text-center text-2xl justify-items-end cursor-pointer dark:invert"
         id="closeEdit"
       >
         <svg
@@ -217,27 +223,33 @@
         </svg>
       </div>
 
-      <div class="grid grid-cols-1 mt-5 mx-7 text-center text-2xl font-bold">
+      <div
+        class="grid grid-cols-1 mt-5 mx-7 text-center text-2xl font-bold dark:text-white"
+      >
         <h2 id="title">Düzenle</h2>
       </div>
-      <div class="grid grid-cols-1 mt-5 mx-7 text-center text-xl">
+      <div
+        class="grid grid-cols-1 mt-5 mx-7 text-center text-xl dark:text-white"
+      >
         <h2 id="editTitle">Düzenle</h2>
       </div>
       <form id="editFormForm" autocomplete="off">
         <div class="text-center space-y-2 sm:text-left">
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Platform</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Platform
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="editPlatform"
               id="editPlatform"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">URL</p>
+            <p class="text-lg text-black font-semibold dark:text-white">URL</p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="editURL"
               id="editURL"
@@ -245,18 +257,22 @@
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Kullanıcı Adı</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Kullanıcı Adı
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="editUsername"
               id="editUsername"
             />
           </div>
           <div class="grid grid-cols-1 mt-5 mx-7">
-            <p class="text-lg text-black font-semibold">Parola</p>
+            <p class="text-lg text-black font-semibold dark:text-white">
+              Parola
+            </p>
             <input
-              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              class="py-2 px-4 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               type="text"
               name="editPassword"
               id="editPassword"
@@ -393,7 +409,14 @@
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                       >Parola</label
                     >
-                    <img src="/style/show.svg" alt="" height="20" width="20" class="mb-2 cursor-pointer" id="show-selected-password" />
+                    <img
+                      src="/style/show.svg"
+                      alt=""
+                      height="20"
+                      width="20"
+                      class="mb-2 cursor-pointer dark:invert"
+                      id="show-selected-password"
+                    />
                   </div>
                   <div class="relative">
                     <a
@@ -714,11 +737,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script src="js/FileSaver.js"></script>
-  <script src="js/core.js?v=1.2"></script>
-  <script src="js/ui.js?v=1.2"></script>
+  <script src="js/core.js?v=1.3"></script>
+  <script src="js/ui.js?v=1.3"></script>
   <script>
     const url = new URL(document.location.href);
-    // url.protocol == 'http:' ? window.location.href = 'https://paroladepom.com' : '';
+    url.protocol == "http:"
+      ? (window.location.href = "https://paroladepom.com")
+      : "";
     landing();
     listSidebar();
     handlePreferences();

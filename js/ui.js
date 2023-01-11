@@ -182,7 +182,7 @@ handlePreferences = () => {
   }
 
   if (hidePasswords) {
-    $("a[id=selected-password]").text("••••••••••");
+    $("a[id=selected-password]").text("•••••••");
     $("#hidePasswords").prop("checked", true);
     $("a[id=selected-password]").attr("data-hide", "true");
   } else {
@@ -256,39 +256,36 @@ $(document).on("click", "#navbar-mobile", function (event) {
 $(document).on("click", "input[name=sidebar-select]", function (event) {
   saveClick(event.target.id);
   const data = findById(event.target.id);
-  const { platform, name, password, url, id } = data;
-
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
-
-  emailRegex.test(name)
-    ? $("#username-label").html("E-posta")
-    : $("#username-label").html("Kullanıcı Adı");
-
-  ipRegex.test(url)
-    ? $("#url-label").html("IP Adresi")
-    : $("#url-label").html("URL");
-
-  $("#selected-card").removeClass("hidden");
-  $("#selected-card").fadeIn(100);
-  $("#selected-title").html(platform);
-  $("#selected-username").html(name);
-  $("#selected-password").html(password);
-  $("#selected-password").attr("name", id);
-  $("#share-button").attr("name", id);
-  $("#edit").attr("name", id);
-  $("#delete").attr("name", id);
-
-  if (url) {
-    $("#selected-url-section").removeClass("hidden");
-    $("#selected-url").html(url);
-    $("#selected-url").attr("href", url);
-    $("#selected-url").attr("target", "_blank");
-    $("#selected-url").attr("rel", "noopener noreferrer nofollow");
+  if (!data) {
+    $("input:radio[name=sidebar-select]").prop("checked", false);
+    hideCard();
   } else {
-    $("#selected-url-section").addClass("hidden");
-  }
+    const { platform, name, password, url, id } = data;
 
+    $("#username-label").html(formatEmailText(name));
+
+    $("#url-label").html(formatURLText(url));
+
+    $("#selected-card").removeClass("hidden");
+    $("#selected-card").fadeIn(100);
+    $("#selected-title").html(platform);
+    $("#selected-username").html(name);
+    $("#selected-password").html(password);
+    $("#selected-password").attr("name", id);
+    $("#share-button").attr("name", id);
+    $("#edit").attr("name", id);
+    $("#delete").attr("name", id);
+
+    if (url) {
+      $("#selected-url-section").removeClass("hidden");
+      $("#selected-url").html(url);
+      $("#selected-url").attr("href", url);
+      $("#selected-url").attr("target", "_blank");
+      $("#selected-url").attr("rel", "noopener noreferrer nofollow");
+    } else {
+      $("#selected-url-section").addClass("hidden");
+    }
+  }
   handlePreferences();
 });
 
@@ -301,9 +298,11 @@ $(document).on("click", "#share-button", function (event) {
 
   dummy.setAttribute("id", "dummy_id");
   dummy.setAttribute("contenteditable", "");
-  dummy.innerHTML = `${url != "" && url != undefined ? `${url}\n` : ""}${
-    name != "" ? `${name}\n` : ""
-  }${password != "" ? `${password}` : ""}`;
+  dummy.innerHTML = `${
+    url != "" && url != undefined ? `${formatURLText(url)}: ${url}\n` : ""
+  }${name != "" ? `${formatEmailText(name)}: ${name}\n` : ""}${
+    password != "" ? `Parola: ${password}` : ""
+  }`;
 
   navigator.clipboard.writeText(dummy.innerHTML).then(
     function () {
@@ -340,6 +339,16 @@ $(document).on("click", "#show-selected-password", function (event) {
     password.innerHTML = findById(password.name).password;
   } else {
     $("a[id=selected-password]").attr("data-hide", "true");
-    password.innerHTML = "••••••••••";
+    password.innerHTML = "•••••••";
   }
 });
+
+function formatEmailText(data) {
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return emailRegex.test(data) ? "E-posta" : "Kullanıcı adı";
+}
+
+function formatURLText(data) {
+  const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/;
+  return ipRegex.test(data) ? "IP Adresi" : "URL";
+}
